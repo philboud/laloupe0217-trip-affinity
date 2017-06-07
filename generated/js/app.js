@@ -103379,12 +103379,9 @@ angular.module('app')
   .controller('NavbarUserController', function($scope, Auth, CurrentUser, $timeout, $mdSidenav, $state, $rootScope) {
     $rootScope.$on('$viewContentLoaded',
       function(event) {
-        if (CurrentUser.user().community.length === 0 && $state.current.name !== 'user.community') {
-          $state.go('user.community');
-        }
+    });
+    $(".button-collapse").sideNav();
       });
-
-  });
 
 angular.module('app')
     .controller('ProfileController', function($scope, CurrentUser, CommunityService, UserService) {
@@ -103480,7 +103477,7 @@ angular.module('app')
                 }
             })
             .state('anon.home', {
-                url: '/',
+                url: '/home',
                 views: {
                     'content@': {
                         templateUrl: 'anon/home.html',
@@ -103489,7 +103486,7 @@ angular.module('app')
                 }
             })
             .state('anon.login', {
-                url: '/login',
+                url: '/',
                 views: {
                     'content@': {
                         templateUrl: 'anon/login.html',
@@ -103530,10 +103527,19 @@ angular.module('app')
                 }
             })
             .state('user.home', {
-                url: '/',
+                url: '/home',
                 views: {
                     'content@': {
                         templateUrl: 'user/home.html',
+                        controller: 'MainController'
+                    }
+                }
+            })
+            .state('user.infoperso', {
+                url: '/infoperso',
+                views: {
+                    'content@': {
+                        templateUrl: 'user/infoPerso.html',
                         controller: 'MainController'
                     }
                 }
@@ -103594,6 +103600,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "<nav class=\"navbar navbar-default\" role=\"navigation\" ng-controller=\"NavbarController\">\n" +
     "    <div class=\"container-fluid\">\n" +
     "        <div class=\"navbar-header\">\n" +
+    "          \n" +
     "            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navbar\">\n" +
     "        <span class=\"sr-only\">Toggle navigation</span>\n" +
     "        <span class=\"icon-bar\"></span>\n" +
@@ -103603,13 +103610,12 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            <a class=\"navbar-brand\" href=\"#\"></a>\n" +
     "        </div>\n" +
     "        <div class=\"collapse navbar-collapse\" id=\"navbar\">\n" +
-    "            <ul class=\"nav navbar-nav\">\n" +
+    "            <!-- <ul class=\"nav navbar-nav\">\n" +
     "                <li ui-sref-active=\"active\"><a ui-sref=\"anon.home\">Home</a></li>\n" +
-    "\n" +
-    "            </ul>\n" +
+    "          </ul> -->\n" +
     "            <ul class=\"nav navbar-nav navbar-right\">\n" +
     "                <li>\n" +
-    "                    <li ui-sref-active=\"active\"><a ui-sref=\"anon.login\" ng-hide=\"auth.isAuthenticated()\">Login</a></li>\n" +
+    "\n" +
     "                    <li ui-sref-active=\"active\"><a ui-sref=\"user.dashboard\" ng-show=\"auth.isAuthenticated()\">Dashboard</a></li>\n" +
     "                    <li><a ng-click=\"logout()\" ng-show=\"auth.isAuthenticated()\" href='#'>Logout</a></li>\n" +
     "                </li>\n" +
@@ -103657,28 +103663,46 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "</div>\n"
   );
 
+  $templateCache.put("user/infoPerso.html",
+    "<div class=\"container back\">\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"modalform\">\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-xs-6 col-xs-offset-3\">\n" +
+    "      <h3>Trip-Affinity</h3>\n" +
+    "      <h1>L'affaire est dans le sac...à dos!</h1>\n" +
+    "      \n" +
+    "        </form>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "</div>\n"
+  );
+
   $templateCache.put("user/navbar.html",
     "<nav class=\"navbar navbar-default\" role=\"navigation\" ng-controller=\"NavbarController\">\n" +
     "    <div class=\"container-fluid\">\n" +
     "        <div class=\"navbar-header\">\n" +
-    "            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navbar\">\n" +
+    "            <!-- <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navbar\">\n" +
     "        <span class=\"sr-only\">Toggle navigation</span>\n" +
     "        <span class=\"icon-bar\"></span>\n" +
     "        <span class=\"icon-bar\"></span>\n" +
     "        <span class=\"icon-bar\"></span>\n" +
-    "      </button>\n" +
-    "            <a class=\"navbar-brand\" href=\"#\"></a>\n" +
-    "        </div>\n" +
-    "        <div class=\"collapse navbar-collapse\" id=\"navbar\">\n" +
-    "            <ul class=\"nav navbar-nav\">\n" +
-    "              <li ui-sref-active=\"active\"><a ui-sref=\"user.profile\" ng-show=\"auth.isAuthenticated()\">Profile</a></li>\n" +
-    "            </ul>\n" +
-    "            <ul class=\"nav navbar-nav navbar-right\">\n" +
-    "                <li>\n" +
-    "                <li ui-sref-active=\"active\"><a ui-sref=\"anon.home\">Website</a></li>\n" +
-    "                    <li><a ng-click=\"logout()\" ng-show=\"auth.isAuthenticated()\" href='#'>Logout</a></li>\n" +
-    "                </li>\n" +
-    "            </ul>\n" +
+    "      </button> -->\n" +
+    "      <ul class=\"right hide-on-med-and-down\">\n" +
+    "        <li><a href=\"#!/user/infoperso\">Info perso</a></li>\n" +
+    "        <li><a href=\"#!\">The adventure</a></li>\n" +
+    "        <li><a class=\"dropdown-button\" href=\"#!\" data-activates=\"dropdown1\">Dropdown<i class=\"material-icons right\">arrow_drop_down</i></a></li>\n" +
+    "        <ul id='dropdown1' class='dropdown-content'>\n" +
+    "          <li><a href=\"\">First</a></li>\n" +
+    "          <li><a href=\"#!\">Second</a></li>\n" +
+    "          <li><a href=\"#!\">Third</a></li>\n" +
+    "          <li><a href=\"#!\">Fourth</a></li>\n" +
+    "        </ul>\n" +
+    "      </ul>\n" +
+    "\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</nav>\n"

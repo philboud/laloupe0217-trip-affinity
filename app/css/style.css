@@ -15,3 +15,12 @@ height: 100vh;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
  }
+ .side-nav li>a{
+  padding: 0 15px;
+}
+.side-nav li>a>i, .side-nav li>a>[class^="mdi-"], .side-nav li>a li>a>[class*="mdi-"], .side-nav li>a>i.material-icons{
+  margin: 0 15px 0 0;
+}
+.side-nav .collapsible-body{
+  padding: 0 30px;
+}
