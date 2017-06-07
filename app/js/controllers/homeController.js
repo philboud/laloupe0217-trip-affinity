@@ -1,28 +1,15 @@
 angular.module('app')
 
 
-  .controller('MainController', function($scope, Auth, UserService, Profils) {
+    .controller('homeController', function($scope, Auth, UserService, Profils) {
 
-          $scope.profils = Profils;
+        $scope.profils = Profils;
+        console.log($scope.profils);
+        $scope.users = [];
+        $scope.profils.forEach(function(element) {
+            console.log(element);
+            $scope.users.push(element.pseudo);
+            console.log('  $scope.users', $scope.users);
+        });
 
-          $scope.users = $scope.profils.map(function(name) {
-                  var newname = name[pseudo];
-                  return newname;
-
-          });
-          console.log($scope.users);
-  });
-
-  //
-  // var tableauOrig = [{clé:1, valeur:10}, {clé:2, valeur:20}, {clé:3, valeur: 30}];
-  // var tableauFormaté = tableauOrig.map(function(obj){
-  //   var rObj = {};
-  //   rObj[obj.clé] = obj.valeur;
-  //   return rObj;
-  // });
-  // tableauFormaté vaut maintenant [{1:10}, {2:20}, {3:30}],
-  // tableauOrig vaut toujours
-  // [{clé:1, valeur:10},
-  //  {clé:2, valeur:20},
-  //  {clé:3, valeur: 30}
-  // ]
+    });
