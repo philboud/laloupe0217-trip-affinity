@@ -32564,15 +32564,15 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 /**
  * Swiper 3.4.2
  * Most modern mobile touch slider and framework with hardware accelerated transitions
- * 
+ *
  * http://www.idangero.us/swiper/
- * 
+ *
  * Copyright 2017, Vladimir Kharlampidi
  * The iDangero.us
  * http://www.idangero.us/
- * 
+ *
  * Licensed under MIT
- * 
+ *
  * Released on: March 10, 2017
  */
 .swiper-container {
@@ -33137,7 +33137,26 @@ button.swiper-pagination-bullet {
   }
 }
 
-.view{
+/*/////////////// GLOBAL\\\\\\\\\\\\\\*/
+h2{
+  font-size: 16px;
+  font-weight: bold;
+}
+p{
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: justify;
+}
+a{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+img {
+    width: 100%;
+    height: auto;
+}
+
+.back{
 background-image: url("/img/paradise.jpg");
 background-size: cover;
 height: 100vh;
@@ -33165,7 +33184,9 @@ height: 100vh;
 }
 
 /*/////////////// HOME PAGE \\\\\\\\\\\\\\*/
-
+.lastnews{
+  margin-left: 20px;
+}
 .map{
 background-image: url("/img/World-vectors.jpg");
 background-size: cover;
@@ -33188,6 +33209,9 @@ margin-bottom: 20px;
 .blog{
   padding-left: 20px;
   padding-right: 20px
+}
+.cardtitle{
+  font-weight: bold;
 }
 
 @font-face {
