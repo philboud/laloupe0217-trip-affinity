@@ -75,8 +75,8 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "        </div>\n" +
     "        <div class=\"col s2 newpeople\">\n" +
     "            <h2>Have you ever met :</h2>\n" +
-    "            <div class=\"chip rightsuggest\">\n" +
-    "                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "            <div class=\"chip rightsuggest\" ng-repeat=\"user in users\" ng-click=\"profilUser(userName)\">\n" +
+    "                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> {{user}}\n" +
     "            </div>\n" +
     "            <div class=\"chip rightsuggest\">\n" +
     "                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
@@ -243,10 +243,20 @@ angular.module("app").run(["$templateCache", function($templateCache) {
   $templateCache.put("user/rencontre.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col s6 filter\">\n" +
-    "      <h2>Who do you wanna meet ?</h2>\n" +
+    "        <h2>Who do you wanna meet ?</h2>\n" +
+    "        <md-input-container>\n" +
+    "            <input type=\"text\" mdInput [formControl]=\"myControl\" [mdAutocomplete]=\"auto\">\n" +
+    "        </md-input-container>\n" +
+    "\n" +
+    "        <md-autocomplete #auto=\"mdAutocomplete\" [displayWith]=\"displayFn\">\n" +
+    "            <md-option *ngFor=\"let option of filteredOptions | async\" [value]=\"option\">\n" +
+    "                {{ option.name }}\n" +
+    "            </md-option>\n" +
+    "        </md-autocomplete>\n" +
+    "\n" +
     "    </div>\n" +
     "    <div class=\"col s6 matches\">\n" +
-    "      <h2>Contact them :</h2>\n" +
+    "        <h2>Contact them :</h2>\n" +
     "    </div>\n" +
     "</div>\n"
   );

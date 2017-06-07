@@ -72,8 +72,8 @@
         </div>
         <div class="col s2 newpeople">
             <h2>Have you ever met :</h2>
-            <div class="chip rightsuggest">
-                <img src="/img/profilimg.jpg" alt="Contact Person"> Jane Doe
+            <div class="chip rightsuggest" ng-repeat="user in users" ng-click="profilUser(userName)">
+                <img src="/img/profilimg.jpg" alt="Contact Person"> {{user}}
             </div>
             <div class="chip rightsuggest">
                 <img src="/img/profilimg.jpg" alt="Contact Person"> Jane Doe

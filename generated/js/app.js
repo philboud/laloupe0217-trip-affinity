@@ -103299,6 +103299,37 @@ angular.module('app')
     });
 
 angular.module('app')
+    .factory('Profils', function() {
+
+          var profils = [{
+            pseudo: 'Coralie',
+            image: '/img/coralie.jpg'
+          },
+          {
+            pseudo: 'Anna',
+            image: '/img/anna.jpg'
+          },
+          {
+            pseudo: 'Camille',
+            image: '/img/camille.jpg'
+          },
+          {
+            pseudo: 'Cécile',
+            image: '/img/cecile.jpg'
+          },
+          {
+            pseudo: 'Lucie',
+            image: '/img/lucie.jpg'
+          },
+          {
+            pseudo: 'Nailletine',
+            image: '/img/nailletine.jpg'
+          }];
+
+          return profils;
+    });
+
+angular.module('app')
     .factory('SessionService', function() {
         return {
             get: function(key) {
@@ -103336,6 +103367,35 @@ angular.module('app')
       }
     };
   });
+
+angular.module('app')
+
+
+  .controller('MainController', function($scope, Auth, UserService, Profils) {
+
+          $scope.profils = Profils;
+
+          $scope.users = $scope.profils.map(function(name) {
+                  var newname = name[pseudo];
+                  return newname;
+
+          });
+          console.log($scope.users);
+  });
+
+  //
+  // var tableauOrig = [{clé:1, valeur:10}, {clé:2, valeur:20}, {clé:3, valeur: 30}];
+  // var tableauFormaté = tableauOrig.map(function(obj){
+  //   var rObj = {};
+  //   rObj[obj.clé] = obj.valeur;
+  //   return rObj;
+  // });
+  // tableauFormaté vaut maintenant [{1:10}, {2:20}, {3:30}],
+  // tableauOrig vaut toujours
+  // [{clé:1, valeur:10},
+  //  {clé:2, valeur:20},
+  //  {clé:3, valeur: 30}
+  // ]
 
 angular.module('app')
     .controller('LoginController', function($scope, $state, Auth) {
@@ -103481,7 +103541,7 @@ angular.module('app')
                 views: {
                     'content@': {
                         templateUrl: 'anon/home.html',
-                        controller: 'MainController'
+                        controller: 'homeController'
                     }
                 }
             })
@@ -103633,8 +103693,8 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "        </div>\n" +
     "        <div class=\"col s2 newpeople\">\n" +
     "            <h2>Have you ever met :</h2>\n" +
-    "            <div class=\"chip rightsuggest\">\n" +
-    "                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "            <div class=\"chip rightsuggest\" ng-repeat=\"user in users\" ng-click=\"profilUser(userName)\">\n" +
+    "                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> {{user}}\n" +
     "            </div>\n" +
     "            <div class=\"chip rightsuggest\">\n" +
     "                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
@@ -103801,10 +103861,20 @@ angular.module("app").run(["$templateCache", function($templateCache) {
   $templateCache.put("user/rencontre.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col s6 filter\">\n" +
-    "      <h2>Who do you wanna meet ?</h2>\n" +
+    "        <h2>Who do you wanna meet ?</h2>\n" +
+    "        <md-input-container>\n" +
+    "            <input type=\"text\" mdInput [formControl]=\"myControl\" [mdAutocomplete]=\"auto\">\n" +
+    "        </md-input-container>\n" +
+    "\n" +
+    "        <md-autocomplete #auto=\"mdAutocomplete\" [displayWith]=\"displayFn\">\n" +
+    "            <md-option *ngFor=\"let option of filteredOptions | async\" [value]=\"option\">\n" +
+    "                {{ option.name }}\n" +
+    "            </md-option>\n" +
+    "        </md-autocomplete>\n" +
+    "\n" +
     "    </div>\n" +
     "    <div class=\"col s6 matches\">\n" +
-    "      <h2>Contact them :</h2>\n" +
+    "        <h2>Contact them :</h2>\n" +
     "    </div>\n" +
     "</div>\n"
   );
