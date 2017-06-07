@@ -14,7 +14,7 @@ angular.module('app')
                 }
             })
             .state('anon.home', {
-                url: '/',
+                url: '/home',
                 views: {
                     'content@': {
                         templateUrl: 'anon/home.html',
@@ -23,7 +23,7 @@ angular.module('app')
                 }
             })
             .state('anon.login', {
-                url: '/login',
+                url: '/',
                 views: {
                     'content@': {
                         templateUrl: 'anon/login.html',
@@ -64,10 +64,19 @@ angular.module('app')
                 }
             })
             .state('user.home', {
-                url: '/',
+                url: '/home',
                 views: {
                     'content@': {
                         templateUrl: 'user/home.html',
+                        controller: 'MainController'
+                    }
+                }
+            })
+            .state('user.infoperso', {
+                url: '/infoperso',
+                views: {
+                    'content@': {
+                        templateUrl: 'user/infoPerso.html',
                         controller: 'MainController'
                     }
                 }
