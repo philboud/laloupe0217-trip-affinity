@@ -103559,10 +103559,102 @@ angular.module('app')
 angular.module("app").run(["$templateCache", function($templateCache) {
 
   $templateCache.put("anon/home.html",
+    "<div class=\"container\">\n" +
     "\n" +
-    "<div class=\"container back\">\n" +
-    "\n" +
-    "\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col s12 map\">\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 lastnews\">\n" +
+    "            <div class=\"col s12 blocknews\">\n" +
+    "                <div class=\"\">\n" +
+    "                    <div class=\"col s4\">\n" +
+    "                        <img src=\"http://lorempixel.com/100/190/nature/6\">\n" +
+    "                    </div>\n" +
+    "                    <div class=\"\">\n" +
+    "                        <div class=\"col s8\">\n" +
+    "                            <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
+    "                                <img src=\"images/yuna.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "                            </div>\n" +
+    "                            <p>I just came back from Sri-Lanka ! Amazing trip ! People are so nice. Beautifull landscapes...</p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"card-action\">\n" +
+    "                            <a href=\"#\">Wanna read more...</a>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"col s12\">\n" +
+    "                <div class=\"\">\n" +
+    "                    <div class=\"col s4\">\n" +
+    "                        <img src=\"http://lorempixel.com/100/190/nature/6\">\n" +
+    "                    </div>\n" +
+    "                    <div class=\"\">\n" +
+    "                        <div class=\"col s8\">\n" +
+    "                            <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
+    "                                <img src=\"images/yuna.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "                            </div>\n" +
+    "                            <p>I just came back from Sri-Lanka ! Amazing trip ! People are so nice. Beautifull landscapes...</p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"card-action\">\n" +
+    "                            <a href=\"#\">Wanna read more...</a>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"col s12\">\n" +
+    "                <div class=\"\">\n" +
+    "                    <div class=\"col s4\">\n" +
+    "                        <img src=\"http://lorempixel.com/100/190/nature/6\">\n" +
+    "                    </div>\n" +
+    "                    <div class=\"\">\n" +
+    "                        <div class=\"col s8\">\n" +
+    "                            <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
+    "                                <img src=\"images/yuna.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "                            </div>\n" +
+    "                            <p>I just came back from Sri-Lanka ! Amazing trip ! People are so nice. Beautifull landscapes...</p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"card-action\">\n" +
+    "                            <a href=\"#\">Wanna read more...</a>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s4 blog\">\n" +
+    "            <div class=\"col s12\">\n" +
+    "                <div class=\"card\">\n" +
+    "                    <div class=\"card-image\">\n" +
+    "                        <img src=\"images/sample-1.jpg\">\n" +
+    "                        <span class=\"card-title\">Card Title</span>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"card-content\">\n" +
+    "                        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"card-action\">\n" +
+    "                        <a href=\"#\">This is a link</a>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s2 newpeople\">\n" +
+    "            <div class=\"chip rightsuggest\">\n" +
+    "                <img src=\"images/yuna.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "            </div>\n" +
+    "            <div class=\"chip rightsuggest\">\n" +
+    "                <img src=\"images/yuna.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "            </div>\n" +
+    "            <div class=\"chip rightsuggest\">\n" +
+    "                <img src=\"images/yuna.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "            </div>\n" +
+    "            <div class=\"chip rightsuggest\">\n" +
+    "                <img src=\"images/yuna.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "            </div>\n" +
+    "            <div class=\"chip rightsuggest\">\n" +
+    "                <img src=\"images/yuna.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "\n" +
     "</div>\n"
   );
