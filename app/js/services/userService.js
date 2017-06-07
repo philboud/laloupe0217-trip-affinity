@@ -16,15 +16,6 @@ angular.module('app')
       update: function(id,user) {
         return $http.put('/users/' + id, user);
       },
-      addCommunity: function(id, community) {
-        var update = $http.put('/users/community/' + id, community);
-        update.then(function(result) {
-            LocalService.set('auth_token', result.data.token);
-            LocalService.set('user', JSON.stringify(result.data.user));
-          }).catch(function() {});
-          return update;
-
-      },
       delete: function(id) {
         return $http.delete('/users/' + id);
       }

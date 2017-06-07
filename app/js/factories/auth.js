@@ -40,6 +40,7 @@ angular.module('app')
                 register.then(function(result) {
                     LocalService.set('auth_token', result.data.token);
                     LocalService.set('user', JSON.stringify(result.data.user));
+                    console.log(result.data.user);
                 }).catch(function() {});
                 return register;
             }

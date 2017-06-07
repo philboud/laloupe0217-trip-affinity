@@ -8,14 +8,6 @@ angular.module('app')
     $scope.inputType = "password";
     var timer;
 
-    function searchPseudo() {
-      timer = $timeout(function() {
-        UserService.getPseudo($scope.user.pseudo.toLowerCase()).then(function(res) {
-          $scope.verif = res.data;
-        });
-      }, 1500);
-    }
-
     function searchEmail() {
       timer = $timeout(function() {
         UserService.getEmail($scope.user.email).then(function(res) {
@@ -23,12 +15,7 @@ angular.module('app')
         });
       }, 1500);
     }
-
-    $scope.addPseudo = function() {
-      $timeout.cancel(timer);
-      searchPseudo();
-    };
-
+    
     $scope.addEmail = function() {
       $timeout.cancel(timer);
       searchEmail();
@@ -46,7 +33,7 @@ angular.module('app')
       Auth.register($scope.user).then(function(res){
         console.log(res);
       })
-      .then($state.go("user.community"));
+      .then($state.go("user.home"));
 
     };
   });
