@@ -103237,6 +103237,7 @@ angular.module('app')
                 register.then(function(result) {
                     LocalService.set('auth_token', result.data.token);
                     LocalService.set('user', JSON.stringify(result.data.user));
+                    console.log(result.data.user);
                 }).catch(function() {});
                 return register;
             }
@@ -103330,257 +103331,10 @@ angular.module('app')
       update: function(id,user) {
         return $http.put('/users/' + id, user);
       },
-      addCommunity: function(id, community) {
-        var update = $http.put('/users/community/' + id, community);
-        update.then(function(result) {
-            LocalService.set('auth_token', result.data.token);
-            LocalService.set('user', JSON.stringify(result.data.user));
-          }).catch(function() {});
-          return update;
-
-      },
       delete: function(id) {
         return $http.delete('/users/' + id);
       }
     };
-  });
-
-angular.module('app')
-    .controller('CreateNewActivityController', function($scope, $state, $stateParams, CreateActivityService, SessionService) {
-
-        $scope.navigateBefore = function() {
-            $state.go('user.filterActivity');
-        };
-        $scope.resultRules = [
-            'Gagnant / Perdant',
-            'Gagnant / Match nul / Perdant'
-        ];
-        $scope.photos = [
-            'foot',
-            'echec',
-            'petanque',
-            'basket',
-            'sport_de_plein_air',
-            'sport en salle',
-            'activite_de_plein_air',
-            'jeux_de_societe'
-            ];
-        $scope.valide = function() {
-            $scope.newActivity = [];
-            var infoActivity = {
-                photo: $scope.photo,
-                activityName: $scope.activity,
-                description: $scope.description,
-                resultRule: $scope.resultRule,
-                numberOfTeam: $scope.teamNumber,
-                numberOfplayer: $scope.playerNumber,
-                duration: $scope.averageLast
-            };
-            $scope.newActivity.push(infoActivity);
-            console.log($scope.newActivity);
-            CreateActivityService.create(infoActivity).then(function(res) {
-                $state.go('user.filterActivity');
-            });
-        };
-    });
-
-angular.module('app')
-    .controller('ActivityDescriptionController', function($scope, $state, $stateParams, ActivityService, SessionService) {
-
-        $scope.activity = JSON.parse(SessionService.get('activity') || '[]');
-
-
-
-        $scope.navigateBefore = function() {
-            $state.go('user.filterActivity');
-        };
-
-        $scope.valide = function() {
-            $state.go('user.createDefis');
-        };
-        console.log($scope.activity);
-    });
-
-angular.module('app')
-    .controller('ChallengeController', function($scope, ChallengeService, $state) {
-      // var id = $state.params;
-
-$scope.challenges = [];
-
-        ChallengeService.getAll().then(function(res){
-          console.log(res.data);
-          $scope.challenges = res.data[0];
-        });
-
-
-
-    });
-
-angular.module('app')
-  .controller('CommunityController', function($scope, CurrentUser, UserService, CommunityService, SessionService, $state,$timeout) {
-    $scope.communityParam = CurrentUser.user().community.length;
-
-    console.log($scope.communityParam);
-
-    var userId = CurrentUser.user()._id;
-    $scope.communitys = [];
-
-
-    var timer = $timeout(function() {
-      CommunityService.getAll().then(function(res) {
-        $scope.communitys = res.data;
-      });
-    }, 3000);
-
-
-
-    $scope.addCommunity = function(id) {
-      CommunityService.addUser(id, {
-        users: userId
-      }).then(function(res) {});
-      UserService.addCommunity(userId, {
-        community: id
-      }).then(function(res) {
-        $state.go('user.home');
-      });
-    };
-  });
-
-angular.module('app')
-  .controller('CommunityController', function($scope, CurrentUser, UserService, CommunityService, SessionService, $state,$timeout) {
-    $scope.communityParam = CurrentUser.user().community.length;
-
-    console.log($scope.communityParam);
-
-    var userId = CurrentUser.user()._id;
-    $scope.communitys = [];
-
-
-    var timer = $timeout(function() {
-      CommunityService.getAll().then(function(res) {
-        $scope.communitys = res.data;
-        console.log($scope.communitys);
-      });
-    }, 3000);
-
-
-
-    $scope.addCommunity = function(id) {
-      CommunityService.addUser(id, {
-        users: userId
-      }).then(function(res) {});
-      UserService.addCommunity(userId, {
-        community: id
-      }).then(function(res) {
-        $state.go('user.home');
-      });
-    };
-  });
-
-angular.module('app')
-  .controller('CreateCommunityController', function($scope, SessionService, $state,$timeout, UserService, CurrentUser, CommunityService) {
-    $scope.navigateBefore = function() {
-        $state.go('user.community');
-    };
-  $scope.valide = function() {
-    $scope.newCommunity=[];
-
-    var infoCommunity = {
-        name: $scope.communityName,
-        location: $scope.communityPlace,
-        // users: CurrentUser.user()._id
-
-    };
-
-    $scope.newCommunity.push(infoCommunity);
-  CommunityService.create(infoCommunity).then(function(res) {
-        $state.go('user.home');
-        sessionStorage.clear();
-    });
-  };
-  });
-
-angular.module('app')
-    .controller('CreateDefisController', function($scope, $state, $stateParams, ActivityService, SessionService, ChallengeService, UserService, CurrentUser) {
-//
-      if (navigator.userAgent.match(/(android|iphone|blackberry|symbian|symbianos|symbos|netfront|model-orange|javaplatform|iemobile|windows phone|samsung|htc|opera mobile|opera mobi|opera mini|presto|huawei|blazer|bolt|doris|fennec|gobrowser|iris|maemo browser|mib|cldc|minimo|semc-browser|skyfire|teashark|teleca|uzard|uzardweb|meego|nokia|bb10|playbook)/gi)) {
-        $scope.device = (navigator.userAgent.match(/(android|iphone|blackberry|symbian|symbianos|symbos|netfront|model-orange|javaplatform|iemobile|windows phone|samsung|htc|opera mobile|opera mobi|opera mini|presto|huawei|blazer|bolt|doris|fennec|gobrowser|iris|maemo browser|mib|cldc|minimo|semc-browser|skyfire|teashark|teleca|uzard|uzardweb|meego|nokia|bb10|playbook)/gi)).length
-        ;
-      } else {
-          $scope.device=[];
-      }
-
-console.log($scope.device);
-        $scope.community = $stateParams.community;
-
-        $scope.user = CurrentUser.user();
-        $scope.activity = JSON.parse(SessionService.get('activity') || '[]');
-
-        $scope.filterActivity = function() {
-            $state.go('user.filterActivity');
-        };
-
-
-        $scope.sendChallenge = function() {
-            $scope.newChallenge = [];
-            var infoChallenge = {
-                pseudo: $scope.user._id,
-                activity: $scope.activity._id,
-                date: $scope.myDate,
-                time: $scope.startTime,
-                duration: $scope.duration,
-                place: $scope.lieu,
-                groupe: $scope.activity.numberOfTeam,
-                nbrParticipantGroupe: $scope.activity.numberOfplayer,
-                // invite: [$scope.invite]
-
-            };
-
-            $scope.newChallenge.push(infoChallenge);
-            ChallengeService.create(infoChallenge,$scope.invite).then(function(res) {
-                $state.go('user.home');
-                sessionStorage.clear();
-            });
-
-        };
-
-        $scope.durations = [
-            "15mn",
-            "30mn",
-            "45mn",
-            "1h00",
-            "1h15",
-            "1h30",
-            "1h45",
-            "2h00"
-        ];
-        $scope.goToHome = function() {
-            $state.go('user.home');
-        };
-
-        $scope.navigateTo = function() {
-            $state.go('user.invite', {community: $scope.community});
-        };
-
-    });
-
-angular.module('app')
-    .controller('DashboardController', function($scope, CurrentUser, UserService) {
-        UserService.getOne(CurrentUser.user()._id).then(function(res) {
-            $scope.user = res.data;
-        });
-    });
-
-angular.module('app')
-  .controller('InviteController', function($scope, $stateParams, SessionService, CurrentUser, $state,$timeout, UserService, CommunityService) {
-    var community = $stateParams.community;
-
-    CommunityService.getOne(community).then(function(res) {
-      $scope.communitys = res.data.users;
-      console.log('res community', $scope.communitys);
-
-});
-
   });
 
 angular.module('app')
@@ -103610,213 +103364,9 @@ angular.module('app')
 
 angular.module('app')
 
-  .controller('MainController', function($scope, Auth, $timeout, $mdSidenav, UserService, CurrentUser, $log, CommunityService, $state, $window) {
+  .controller('MainController', function($scope, Auth, $timeout, $mdSidenav, UserService, CurrentUser, $log, $state, $window) {
     var userId = CurrentUser.user()._id;
     $scope.user = CurrentUser.user();
-    $scope.table = [{swiper:"",image:""}];
-
-    $scope.onReadySwiper = function (swiper) {
-      // console.log(swiper);
-      var id = swiper.params.index;
-      var swiper1 = swiper.params.swiperId;
-      var image1 = swiper.imagesLoaded;
-      $scope.table[id] = {'swiper' : swiper1,'image' : image1};
-      // console.log($scope.table);
-
-
-    };
-    // $scope.onReadySwiper2 = function (swiper) {
-    //   var swiper2 = swiper.params.swiperId;
-    //   var image2 = swiper.imagesToLoad.length;
-    //   var id = swiper.params.index;
-    //
-    // };
-
-    $scope.slideOption = {
-      'slidesPerView': 5,
-      'spaceBetween': 20,
-      'breakpoints': {
-        '320': {
-          'slidesPerView': 2,
-          'spaceBetween': 20
-        },
-        '480': {
-          'slidesPerView': 2,
-          'spaceBetween': 40
-        },
-        '768': {
-          'slidesPerView': 3,
-          'spaceBetween': 170
-        },
-        '1024': {
-          'slidesPerView': 4,
-          'spaceBetween': 230,
-          'pagination-is-active':false
-        },
-        '1300': {
-          'slidesPerView': 5,
-          'spaceBetween': 200,
-        },
-        '1800': {
-          'slidesPerView': 5,
-          'spaceBetween': 200
-        }
-      }
-    };
-
-
-
-    $(document).ready(function() {
-      $('ul.tabs').tabs();
-    });
-
-    $scope.communitys = [];
-    UserService.getOne(userId).then(function(res) {
-      $scope.communitys = res.data.community;
-      $scope.community = $scope.communitys[($scope.communitys.length - 1)];
-      console.log($scope.communitys);
-    });
-
-var communitySelect;
-    $scope.selected = function(index) {};
-
-    function buildToggler(navID) {
-      return function() {
-        $mdSidenav(navID)
-          .toggle()
-          .then(function() {
-            $log.debug("toggle " + navID + " is done");
-          });
-      };
-    }
-
-    $scope.onSwipeLeft = buildToggler('right');
-
-    $scope.onSwipeRight = function(ev) {
-      $mdSidenav('right').close()
-        .then(function() {
-          $log.debug("close RIGHT is done");
-        });
-    };
-
-    $scope.toggleRight = buildToggler('right');
-    $scope.isOpenRight = function() {
-      return $mdSidenav('right').isOpen();
-    };
-
-    $scope.logout = function() {
-      Auth.logout();
-      $state.go('anon.login');
-    };
-
-
-    $scope.invitations = [{
-      name: 'Foot',
-      activity: 'Sport Extérieur',
-      url: './img/foot.jpg'
-    }, {
-      name: 'PinPong',
-      activity: 'Sport Intérieur',
-      url: './img/ping-pong.jpg'
-    }, {
-      name: 'Fifa',
-      activity: 'E-Sport',
-      url: './img/jeuxVideo.jpg'
-    }, {
-      name: 'Echec',
-      activity: 'Jeux Société',
-      url: './img/echec.jpg'
-    }];
-
-    $scope.arbitrages = [{
-      name: 'Foot',
-      activity: 'Sport Extérieur',
-      url: './img/foot.jpg'
-    }, {
-      name: 'PinPong',
-      activity: 'Sport Intérieur',
-      url: './img/ping-pong.jpg'
-    }, {
-      name: 'Fifa',
-      activity: 'E-Sport',
-      url: './img/jeuxVideo.jpg'
-    }];
-    $scope.defies = [{
-      name: 'Foot',
-      activity: 'Sport Extérieur',
-      url: './img/foot.jpg'
-    }, {
-      name: 'PinPong',
-      activity: 'Sport Intérieur',
-      url: './img/ping-pong.jpg'
-    }, {
-      name: 'Fifa',
-      activity: 'E-Sport',
-      url: './img/jeuxVideo.jpg'
-    }, {
-      name: 'Foot',
-      activity: 'Sport Extérieur',
-      url: './img/foot.jpg'
-    }, {
-      name: 'PinPong',
-      activity: 'Sport Intérieur',
-      url: './img/ping-pong.jpg'
-    }, {
-      name: 'Fifa',
-      activity: 'E-Sport',
-      url: './img/jeuxVideo.jpg'
-    }];
-
-    $scope.communityDefies = [{
-      name: 'Foot',
-      activity: 'Sport Extérieur',
-      url: './img/foot.jpg'
-    }, {
-      name: 'PinPong',
-      activity: 'Sport Intérieur',
-      url: './img/ping-pong.jpg'
-    }, {
-      name: 'Fifa',
-      activity: 'E-Sport',
-      url: './img/jeuxVideo.jpg'
-    }, {
-      name: 'Foot',
-      activity: 'Sport Extérieur',
-      url: './img/foot.jpg'
-    }, {
-      name: 'PinPong',
-      activity: 'Sport Intérieur',
-      url: './img/ping-pong.jpg'
-    }, {
-      name: 'Fifa',
-      activity: 'E-Sport',
-      url: './img/jeuxVideo.jpg'
-    }];
-
-
-
-
-
-    $scope.categories = [];
-
-    // CategoryService.getAll().then(function(res){
-    //   console.log(res.data);
-    //   $scope.categories = res.data;
-    // });
-
-
-    $scope.goToInvitation = function(id) {
-      $state.go("user.challenge", {
-        id: $scope.challenge[id]._id
-      });
-    };
-
-$scope.goCommunity =function() {
-  $state.go("user.community");
-};
-$scope.invitation =function() {
-  $state.go("user.invitation");
-};
   });
 
 angular.module('app')
@@ -103835,24 +103385,6 @@ angular.module('app')
       });
 
   });
-
-angular.module('app')
-    .controller('NewActivityController', function($scope, $state, $stateParams, ActivityService, SessionService) {
-
-        ActivityService.getAll().then(function(res) {
-            $scope.activity = res.data;
-        }, function(err) {});
-        $scope.addActivity = function(activity) {
-                  SessionService.set('activity', JSON.stringify(activity));
-            $state.go('user.activityDescription');
-        };
-        $scope.navigateBefore = function() {
-            $state.go('user.createDefis');
-        };
-        $scope.createNewActivity = function() {
-            $state.go('user.createActivity');
-        };
-    });
 
 angular.module('app')
     .controller('ProfileController', function($scope, CurrentUser, CommunityService, UserService) {
@@ -103902,14 +103434,6 @@ angular.module('app')
     $scope.inputType = "password";
     var timer;
 
-    function searchPseudo() {
-      timer = $timeout(function() {
-        UserService.getPseudo($scope.user.pseudo.toLowerCase()).then(function(res) {
-          $scope.verif = res.data;
-        });
-      }, 1500);
-    }
-
     function searchEmail() {
       timer = $timeout(function() {
         UserService.getEmail($scope.user.email).then(function(res) {
@@ -103917,12 +103441,7 @@ angular.module('app')
         });
       }, 1500);
     }
-
-    $scope.addPseudo = function() {
-      $timeout.cancel(timer);
-      searchPseudo();
-    };
-
+    
     $scope.addEmail = function() {
       $timeout.cancel(timer);
       searchEmail();
@@ -103940,7 +103459,7 @@ angular.module('app')
       Auth.register($scope.user).then(function(res){
         console.log(res);
       })
-      .then($state.go("user.community"));
+      .then($state.go("user.home"));
 
     };
   });
@@ -104010,6 +103529,15 @@ angular.module('app')
                     }
                 }
             })
+            .state('user.home', {
+                url: '/',
+                views: {
+                    'content@': {
+                        templateUrl: 'user/home.html',
+                        controller: 'MainController'
+                    }
+                }
+            })
             .state('user.profile', {
                 url: '/profile',
                 views: {
@@ -104041,6 +103569,8 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-xs-6 col-xs-offset-3\">\n" +
+    "      <h3>Trip-Affinity</h3>\n" +
+    "      <h1>L'affaire est dans le sac...à dos!</h1>\n" +
     "        <form class=\"form\" name=\"loginForm\" novalidate ng-submit=\"login()\">\n" +
     "            <div ng-repeat=\"error in errors\">{{error.error}}</div>\n" +
     "            <div class=\"input-group\">\n" +
@@ -104051,7 +103581,8 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\"></i></span>\n" +
     "                <input id=\"password\" type=\"password\" class=\"form-control\" ng-model=\"user.password\" required placeholder=\"Password\">\n" +
     "            </div>\n" +
-    "            <button type=\"submit\" class=\"btn btn-primary btn-block\">Login</button>\n" +
+    "            <button type=\"submit\" class=\"btn btn-primary btn-block\">Login</button><br>\n" +
+    "          <a href=\"#!/register\">Vous n'êtes pas encore enregistré, cliquez sur ce lien</a>\n" +
     "        </form>\n" +
     "    </div>\n" +
     "  </div>\n" +
@@ -104079,7 +103610,6 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            <ul class=\"nav navbar-nav navbar-right\">\n" +
     "                <li>\n" +
     "                    <li ui-sref-active=\"active\"><a ui-sref=\"anon.login\" ng-hide=\"auth.isAuthenticated()\">Login</a></li>\n" +
-    "                    <li ui-sref-active=\"active\"><a ui-sref=\"anon.register\" ng-hide=\"auth.isAuthenticated()\">Register</a></li>\n" +
     "                    <li ui-sref-active=\"active\"><a ui-sref=\"user.dashboard\" ng-show=\"auth.isAuthenticated()\">Dashboard</a></li>\n" +
     "                    <li><a ng-click=\"logout()\" ng-show=\"auth.isAuthenticated()\" href='#'>Logout</a></li>\n" +
     "                </li>\n" +
@@ -104090,26 +103620,41 @@ angular.module("app").run(["$templateCache", function($templateCache) {
   );
 
   $templateCache.put("anon/register.html",
+    "<div class=\"container back\">\n" +
+    "  <div class=\"modalform\">\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-xs-6 col-xs-offset-3\">\n" +
+    "      <h3>Trip-Affinity</h3>\n" +
+    "      <h1>pour tenter l'aventure, inscrivez vous...!!</h1>\n" +
     "        <form class=\"form\" name=\"loginForm\" novalidate ng-submit=\"register()\">\n" +
     "            <div ng-repeat=\"error in errors\">{{error.error}}</div>\n" +
     "            <div class=\"input-group\">\n" +
     "                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>\n" +
     "                <input id=\"email\" type=\"email\" class=\"form-control\" ng-model=\"user.email\" required placeholder=\"Email Address\">\n" +
     "            </div>\n" +
-    "            <div class=\"input-group\">\n" +
+    "                    <div class=\"input-group\">\n" +
     "                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\"></i></span>\n" +
     "                <input id=\"password\" type=\"password\" class=\"form-control\" ng-model=\"user.password\" required placeholder=\"Password\">\n" +
     "            </div>\n" +
     "            <button type=\"submit\" class=\"btn btn-primary btn-block\">Register</button>\n" +
     "        </form>\n" +
     "    </div>\n" +
+    "</div>\n" +
+    "</div>\n" +
     "</div>\n"
   );
 
   $templateCache.put("user/dashboard.html",
     "Dashboard de {{user.email}}\n"
+  );
+
+  $templateCache.put("user/home.html",
+    "\n" +
+    "<div class=\"container back\">\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "</div>\n"
   );
 
   $templateCache.put("user/navbar.html",
@@ -104126,9 +103671,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "        </div>\n" +
     "        <div class=\"collapse navbar-collapse\" id=\"navbar\">\n" +
     "            <ul class=\"nav navbar-nav\">\n" +
-    "                <li ui-sref-active=\"active\"><a ui-sref=\"user.dashboard\" ng-show=\"auth.isAuthenticated()\">Dashboard</a></li>\n" +
-    "                <li ui-sref-active=\"active\"><a ui-sref=\"user.profile\" ng-show=\"auth.isAuthenticated()\">Profile</a></li>\n" +
-    "\n" +
+    "              <li ui-sref-active=\"active\"><a ui-sref=\"user.profile\" ng-show=\"auth.isAuthenticated()\">Profile</a></li>\n" +
     "            </ul>\n" +
     "            <ul class=\"nav navbar-nav navbar-right\">\n" +
     "                <li>\n" +
