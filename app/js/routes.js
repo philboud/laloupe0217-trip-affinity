@@ -18,7 +18,7 @@ angular.module('app')
                 views: {
                     'content@': {
                         templateUrl: 'anon/home.html',
-                        controller: 'MainController'
+                        controller: 'homeController'
                     }
                 }
             })
@@ -68,7 +68,7 @@ angular.module('app')
                 views: {
                     'content@': {
                         templateUrl: 'user/home.html',
-                        controller: 'MainController'
+                        controller: 'homeController'
                     }
                 }
             })
