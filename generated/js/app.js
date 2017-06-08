@@ -103303,32 +103303,32 @@ angular.module('app')
 
           var profils = [{
             pseudo: 'Coralie',
-            image: '/img/coralie.jpg',
+            image: '/img/Coralie.jpg',
             country: 'Mali',
           },
           {
             pseudo: 'Anna',
-            image: '/img/anna.jpg',
+            image: '/img/Anna.jpg',
             country: 'canada',
           },
           {
             pseudo: 'Camille',
-            image: '/img/camille.jpg',
+            image: '/img/Camille.jpg',
             country: 'Antilles',
           },
           {
-            pseudo: 'Cécile',
-            image: '/img/cecile.jpg',
+            pseudo: 'Cecile',
+            image: '/img/Cecile.jpg',
             country: 'Brezil',
           },
           {
             pseudo: 'Annick',
-            image: '/img/lucie.jpg',
+            image: '/img/Annick.jpg',
             country: 'Amerique',
           },
           {
             pseudo: 'Manon',
-            image: '/img/nailletine.jpg',
+            image: '/img/Manon.jpg',
             country: 'Japon',
           }];
 
@@ -103376,6 +103376,35 @@ angular.module('app')
 
 angular.module('app')
 
+    .controller('PersoController', function($scope, Auth, UserService, CurrentUser, $state) {
+        var userId = CurrentUser.user()._id;
+        $scope.user = CurrentUser.user();
+
+
+        var i = 1;
+        console.log(i);
+        $scope.nextCarnet = function() {
+            if (i < 6) {
+                i++;
+            }
+            i = 1;
+        };
+        $scope.prevCarnet = function() {
+            if (i > 0) {
+                i--;
+            }
+            i = 5;
+        };
+
+        // $scope.images = [
+        //   "/img/carnet1.jpeg",
+        //
+        // ]
+        // $scope.image = "/img/carnet" i ".jpeg";
+    });
+
+angular.module('app')
+
 
     .controller('homeController', function($scope, Auth, UserService, Profils) {
 
@@ -103390,42 +103419,22 @@ angular.module('app')
             console.log('  $scope.countrys', $scope.countrys);
         });
 
+  $scope.chat = true;
+
+$scope.openChat = function(){
+  $scope.chat = false;
+};
+
+$scope.closeChat = function(){
+  $scope.chat = true;
+};
+
+
 $scope.profilUser = function(user){
   console.log(user);
 };
+
     });
-
-angular.module('app')
-    .controller('InfopersoController', function($scope, CurrentUser, UserService) {
-
-        var userId = CurrentUser.user()._id;
-        console.log(CurrentUser.user());
-
-
-
-        $scope.genres = [
-              'Homme',
-              'Femme'
-          ];
-
-        $scope.infoperso = {};
-
-        $scope.valide = function() {
-            var infopersos = {
-                nom: $scope.nom,
-                prenom: $scope.prenom,
-                sexe: $scope.sexe,
-                pseudo: $scope.pseudo,
-                complement: $scope.complement,
-                photo: $scope.photo
-            };
-            $scope.infoperso = (infopersos);
-            console.log($scope.infoperso);
-            console.log(userId);
-            UserService.update(userId,infopersos).then(function(res) {});
-
-        };
-        });
 
 angular.module('app')
     .controller('LoginController', function($scope, $state, Auth) {
@@ -103478,9 +103487,38 @@ angular.module('app')
 
         var userId = CurrentUser.user()._id;
         console.log( CurrentUser.user().pseudo);
-              });
 
-  
+        $scope.goToHome = function() {
+            $state.go('user.home');
+        };
+
+        $scope.user = CurrentUser.user();
+        $scope.pseudo = CurrentUser.user().pseudo;
+        $scope.avatar = CurrentUser.user().avatar;
+        $scope.email = CurrentUser.user().email;
+        $scope.point = 'points';
+
+        $scope.communitys = [];
+
+        UserService.getOne(userId).then(function(res) {
+            $scope.communitys = res.data.community;
+            $scope.community = $scope.communitys[($scope.communitys.length - 1)];
+        });
+        $scope.infoUpdate = function(){
+
+          var infouser ={
+            pseudo: $scope.pseudo,
+            email: $scope.email
+          };
+
+          UserService.update(userId, infouser).then(function(res) {
+            console.log(res.data);
+
+                });
+
+          };
+
+    });
 
 angular.module('app')
   .controller('RegisterController', function($scope, Auth, $state, UserService, $timeout) {
@@ -103521,6 +103559,52 @@ angular.module('app')
 
     };
   });
+
+angular.module('app')
+
+    .controller('RencontreController', function($scope, Auth, UserService, CurrentUser, $state) {
+        var userId = CurrentUser.user()._id;
+        $scope.user = CurrentUser.user();
+
+        $scope.sexe = '';
+
+        $scope.genres = [
+            'Man',
+            'Woman'
+        ];
+
+        $scope.langues = [
+          'English',
+          'French',
+          'Dutch',
+          'Spanish',
+          'Portuguese',
+          'Indie'
+        ];
+
+        $scope.typeOfTravel = [
+          'Chill',
+          'Lux',
+          'Backpack',
+          'Sport',
+          'Cultural',
+          'Food',
+          'Photography',
+          'wildlife',
+          'Party',
+          'Mix',
+          'Short time',
+          'Long spend'
+
+        ];
+        $scope.list = true;
+        console.log($scope.list);
+
+        $scope.showList = function() {
+          $scope.list = false;
+          console.log($scope.list);
+        };
+    });
 
 angular.module('app')
     .config(function($stateProvider, $urlRouterProvider, AccessLevels) {
@@ -103602,6 +103686,24 @@ angular.module('app')
                     'content@': {
                         templateUrl: 'user/infoPerso.html',
                         controller: 'InfopersoController'
+                    }
+                }
+            })
+            .state('user.rencontre', {
+                url: '/rencontre',
+                views: {
+                    'content@': {
+                        templateUrl: 'user/rencontre.html',
+                        controller: 'RencontreController'
+                    }
+                }
+            })
+            .state('user.perso', {
+                url: '/perso',
+                views: {
+                    'content@': {
+                        templateUrl: 'user/perso.html',
+                        controller: 'PersoController'
                     }
                 }
             })
@@ -103806,10 +103908,10 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "    <div class=\"col s12 map\">\n" +
     "    </div>\n" +
     "    <div class=\"col s6 lastnews\">\n" +
-    "      <div class=\"bgsubtitle\">\n" +
-    "      <h2>Last reports</h2>\n" +
-    "    </div>\n" +
-    "      <p class=\"subtitle\">These people went to places you would like to go. Read them reports, chat with them and then why not meeting them.</p>\n" +
+    "        <div class=\"bgsubtitle\">\n" +
+    "            <h2>Last reports</h2>\n" +
+    "        </div>\n" +
+    "        <p class=\"subtitle\">These people went to places you would like to go. Read them reports, chat with them and then why not meeting them.</p>\n" +
     "        <div class=\"col s12 z-depth-2 blocknews\">\n" +
     "            <div class=\"\">\n" +
     "                <div class=\"col s4\">\n" +
@@ -103817,7 +103919,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                </div>\n" +
     "                <div class=\"col s8\">\n" +
     "                    <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
-    "                        <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "                        <img src=\"/img/manon.png\" alt=\"Contact Person\"> Shanika\n" +
     "                    </div>\n" +
     "                    <p>I just came back from Sri-Lanka ! Amazing trip ! People are so nice. Beautifull landscapes...</p>\n" +
     "                </div>\n" +
@@ -103835,7 +103937,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            <div class=\"\">\n" +
     "                <div class=\"col s8\">\n" +
     "                    <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
-    "                        <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "                        <img src=\"/img/cecile.png\" alt=\"Contact Person\"> Lucie\n" +
     "                    </div>\n" +
     "                    <p>Great surf in Canaria (Fuerte Ventura & Gran Canaria). Also awsome spot for partying ang chilling on the beach</p>\n" +
     "                </div>\n" +
@@ -103851,7 +103953,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            </div>\n" +
     "            <div class=\"col s8\">\n" +
     "                <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
-    "                    <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "                    <img src=\"/img/cindy.jpg\" alt=\"Contact Person\"> Cindy\n" +
     "                </div>\n" +
     "                <p>Canada cold but cool !</p>\n" +
     "            </div>\n" +
@@ -103861,10 +103963,10 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "        </div>\n" +
     "    </div>\n" +
     "    <div class=\"col s4 blog\">\n" +
-    "      <div class=\"bgsubtitle\">\n" +
-    "      <h2>Must Match of the day</h2>\n" +
-    "    </div>\n" +
-    "      <p class=\"subtitle\" >You have so much in common with this person... <br> <br></p>\n" +
+    "        <div class=\"bgsubtitle\">\n" +
+    "            <h2>Must Match of the day</h2>\n" +
+    "        </div>\n" +
+    "        <p class=\"subtitle\">You have so much in common with this person... <br> <br></p>\n" +
     "        <div class=\"col s12 z-depth-2\">\n" +
     "            <img class=\"picsprofil\" src=\"/img/tatiana.jpg\">\n" +
     "            <span class=\"cardtitle\">TatianaFromRussia</span>\n" +
@@ -103874,32 +103976,29 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "\n" +
     "            <div class=\"col s3 offset-s9\">\n" +
     "                <i class=\"material-icons\">person</i>\n" +
-    "                <i class=\"material-icons\">message</i>\n" +
+    "                <i class=\"material-icons\" ng-click=\"openChat()\">message</i>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "    <div class=\"col s2 newpeople\">\n" +
-    "      <div class=\"bgsubtitle\">\n" +
-    "        <h2>Have you ever met :</h2>\n" +
-    "      </div>\n" +
+    "        <div class=\"bgsubtitle\">\n" +
+    "            <h2>Have you ever met :</h2>\n" +
+    "        </div>\n" +
     "        <p class=\"subtitle\">here are the latest registered trippers</p>\n" +
     "        <div class=\"chip rightsuggest\" ng-repeat=\"user in users\" ng-click=\"profilUser(user)\">\n" +
-    "            <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> {{user}}{{country}}\n" +
+    "            <img src=\"/img/\"{{user}}\".jpg\" alt=\"Contact Person\"> {{user}}\n" +
     "        </div>\n" +
-    "        <div class=\"chat\">\n" +
-    "<h3>TatianaFromRussia</h3>\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col s12 chat z-depth-2\" ng-hide=\"chat\">\n" +
+    "                <p class=\"col s10 namechat\">TatianaFromRussia</p>\n" +
+    "                <a class=\"col s2 closechatbox\" ng-click=\"closeChat()\">X</a>\n" +
+    "                <form class=\"col s12\">\n" +
+    "                    <textarea id=\"textarea1\" class=\"materialize-textarea\"></textarea>\n" +
+    "                    <label for=\"textarea1 light-blue lighten-3\"></label>\n" +
+    "                    <a class=\"waves-effect light-blue lighten-3 btn\"><i class=\"material-icons\">send</i>Send</a>\n" +
+    "                </form>\n" +
     "\n" +
-    "  <div class=\"row\">\n" +
-    "    <form class=\"col s12\">\n" +
-    "      <div class=\"row\">\n" +
-    "        <div class=\"input-field col s12\">\n" +
-    "          <textarea id=\"textarea1\" class=\"materialize-textarea\"></textarea>\n" +
-    "          <label for=\"textarea1\">Textarea</label>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "    </form>\n" +
-    "  </div>\n" +
-    "        \n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -103910,65 +104009,17 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "<div class=\"container back\">\n" +
     "\n" +
     "\n" +
-    "    <div class=\"infoform\">\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col-xs-6 col-xs-offset-3\">\n" +
-    "                <h1>Trip-Affinity</h1>\n" +
-    "                <h3>Complément d'information</h3>\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col s12\">\n" +
-    "                        <div class=\"photo\">\n" +
-    "                            <div class=\"col-md-6\">\n" +
-    "                                <div class=\"photodim\">\n" +
-    "                                    <img src=\"/img/mila.jpg\" alt=\"\">\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                            <br><br><br>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <form class=\"col s12\">\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"input-field col s6\">\n" +
-    "                                            <input id=\"first_name\" type=\"text\" class=\"validate\" ng-model=\"prenom\">\n" +
-    "                                            <label for=\"first_name\">Prénom</label>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"input-field col s6\">\n" +
-    "                                            <input id=\"last_name\" type=\"text\" class=\"validate\" ng-model=\"nom\">\n" +
-    "                                            <label for=\"last_name\">Nom</label>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"input-field col s6\">\n" +
-    "                                            <input id=\"pseudo\" type=\"text\" class=\"validate\" ng-model=\"pseudo\">\n" +
-    "                                            <label for=\"pseudo\">Pseudo</label>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"input-field col 6\">\n" +
-    "                                            <md-select placeholder=\"Indiquer votre sexe\" ng-model=\"sexe\">\n" +
-    "                                                <md-option ng-repeat=\"sexe in genres\" value=\"{{sexe}}\">{{sexe}}</md-option>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <form class=\"col s12\">\n" +
+    "<div class=\"modalform\">\n" +
     "\n" +
-    "                                    </div>\n" +
-    "\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <div class=\"col s12\">\n" +
-    "                                    <div class=\"input-field inline\">\n" +
-    "                                        <textarea id=\"text\" class=\"materialize-textarea\" ng-model=\"complement\"></textarea>\n" +
-    "                                        <label for=\"text\">Complement</label>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                            <button type=\"button\" class=\"btn btn-default\" ng-click=\"valide()\">Valider</button>\n" +
-    "                            </form>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                </form>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-xs-6 col-xs-offset-3\">\n" +
+    "      <h3>Trip-Affinity</h3>\n" +
+    "      <h1>L'affaire est dans le sac...à dos!</h1>\n" +
+    "      \n" +
+    "        </form>\n" +
     "    </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
     "</div>\n"
   );
 
@@ -103983,6 +104034,8 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "        <span class=\"icon-bar\"></span>\n" +
     "      </button> -->\n" +
     "      <ul class=\"right hide-on-med-and-down\">\n" +
+    "        <li ui-sref-active=\"active\"><a ui-sref=\"user.home\">Home</a></li>\n" +
+    "          <li ui-sref-active=\"active\"><a ui-sref=\"user.rencontre\">Rencontre</a></li>\n" +
     "        <li><a href=\"#!/user/infoperso\">Info perso</a></li>\n" +
     "        <li><a href=\"#!\">The adventure</a></li>\n" +
     "        <li><a class=\"dropdown-button\" href=\"#!\" data-activates=\"dropdown1\">Dropdown<i class=\"material-icons right\">arrow_drop_down</i></a></li>\n" +
@@ -103999,6 +104052,56 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "</nav>\n"
   );
 
+  $templateCache.put("user/perso.html",
+    "<div class=\"row\">\n" +
+    "\n" +
+    "    <div class=\"col s12\">\n" +
+    "\n" +
+    "        <div class=\"col s4\">\n" +
+    "\n" +
+    "            <div class=\"row\">\n" +
+    "\n" +
+    "                <img class=\"col s4 circle responsive-img\" src=\"/img/tatiana2.jpg\" alt=\"\">\n" +
+    "                <p class=\"col s8 namecard valign-wrapper\">TatianaFromRussia</p>\n" +
+    "            </div>\n" +
+    "            <p class=\"subtitle\">I like playing darts and basket-ball and love big surprises...</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">USA, Japan</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">France, Canada, Mexico</p>\n" +
+    "\n" +
+    "            <div class=\"chip chipcard\">Chill\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Long spend\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s8\">\n" +
+    "            <div class=\"col s12\">\n" +
+    "                <div class=\"header\">\n" +
+    "\n" +
+    "                </div>\n" +
+    "<div class=\"slider\">\n" +
+    "    <img src=\"/img/carnet\"{{i}}\".jpeg\" alt=\"\">\n" +
+    "\n" +
+    "</div>\n" +
+    "<div class=\"btns\">\n" +
+    "    <a class=\"btn-floating btn-large waves-effect waves-light red\" ng-click=\"prevCarnet\"><i class=\"material-icons\">chevron_left</i></a>\n" +
+    "      <a class=\"btn-floating btn-large waves-effect waves-light red\" ng-click=\"nextCarnet\"><i class=\"material-icons\">chevron_right</i></a>\n" +
+    "\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "</div>\n"
+  );
+
   $templateCache.put("user/profile.html",
     "Profile de {{user.email}}\n"
   );
@@ -104006,20 +104109,78 @@ angular.module("app").run(["$templateCache", function($templateCache) {
   $templateCache.put("user/rencontre.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col s6 filter\">\n" +
-    "        <h2>Who do you wanna meet ?</h2>\n" +
-    "        <md-input-container>\n" +
-    "            <input type=\"text\" mdInput [formControl]=\"myControl\" [mdAutocomplete]=\"auto\">\n" +
-    "        </md-input-container>\n" +
     "\n" +
-    "        <md-autocomplete #auto=\"mdAutocomplete\" [displayWith]=\"displayFn\">\n" +
-    "            <md-option *ngFor=\"let option of filteredOptions | async\" [value]=\"option\">\n" +
-    "                {{ option.name }}\n" +
-    "            </md-option>\n" +
-    "        </md-autocomplete>\n" +
+    "\n" +
+    "        <div class=\"bgsubtitle\">\n" +
+    "            <h2>Who do you wanna meet ?</h2>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 question\">\n" +
+    "            <div class=\"selectbox\">\n" +
+    "                <p>A :</p>\n" +
+    "                <md-select placeholder=\"You're interrested into...\" ng-model=\"sexe\">\n" +
+    "                    <md-option ng-repeat=\"sexe in genres\" value=\"{{sexe}}\">{{sexe}}</md-option>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 question\">\n" +
+    "            <p>Speaking :</p>\n" +
+    "            <div class=\"checkBox col s12\">\n" +
+    "                <p class=\"col s6\" ng-repeat=\"langue in langues\">\n" +
+    "                    <input type=\"checkbox\" id=\"{{langue}}\" ng-model=\"langue.isChecked\" />\n" +
+    "                    <label for=\"{{langue}}\">{{langue}}</label>\n" +
+    "                </p>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 question\">\n" +
+    "            <p>who have already visited :</p>\n" +
+    "            <md-input-container>\n" +
+    "                <input type=\"text\" mdInput [formControl]=\"myControl\" [mdAutocomplete]=\"auto\">\n" +
+    "            </md-input-container>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 question\">\n" +
+    "            <p>who wants to go in :</p>\n" +
+    "            <md-input-container>\n" +
+    "                <input type=\"text\" mdInput [formControl]=\"myControl\" [mdAutocomplete]=\"auto\">\n" +
+    "            </md-input-container>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <p>Wich kind of traveller do you wanna meet ?</p>\n" +
+    "\n" +
+    "        <div class=\"col s12 checkBox question\">\n" +
+    "            <p class=\"col s2\" ng-repeat=\"type in typeOfTravel\">\n" +
+    "                <input type=\"checkbox\" id=\"{{type}}\" ng-model=\"type.isChecked\" />\n" +
+    "                <label for=\"{{type}}\">{{type}}</label>\n" +
+    "            </p>\n" +
+    "        </div>\n" +
+    "        <a class=\"col s6 btn-large btnvalid\" ng-click=\"showList()\" >Show me the list</a>\n" +
+    "        <a class=\"col s6 btn-large btnvalid\" ng-click=\"risk()\" >I like risk</a>\n" +
+    "\n" +
     "\n" +
     "    </div>\n" +
-    "    <div class=\"col s6 matches\">\n" +
-    "        <h2>Contact them :</h2>\n" +
+    "    <div class=\"col s6 matches\" >\n" +
+    "        <div class=\"bgsubtitle\">\n" +
+    "            <h2>Contact them :</h2>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 userCard card-panel hoverable\" ng-hide=\"list\">\n" +
+    "            <img class=\"col s4 circle responsive-img\" src=\"/img/tatiana2.jpg\" alt=\"\">\n" +
+    "            <p class=\"col s8 namecard valign-wrapper\">TatianaFromRussia</p>\n" +
+    "            <p class=\"subtitle\">I like playing darts and basket-ball and love big surprises...</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">USA, Japan</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">France, Canada, Mexico</p>\n" +
+    "\n" +
+    "            <div class=\"chip chipcard\">Chill\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Long spend\n" +
+    "            </div>\n" +
+    "\n" +
+    "        </div>\n" +
+    "\n" +
+    "\n" +
     "    </div>\n" +
     "</div>\n"
   );
