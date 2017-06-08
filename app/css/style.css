@@ -68,6 +68,8 @@ height: 100vh;
 padding-top: -200px;
 background-image: url("/img/header.svg");
 background-size: cover;
+background-position: center;
+
 width: 100%;
 height: 500px;
 margin-bottom: 20px;
@@ -128,21 +130,15 @@ margin-bottom: 20px;
 
 /*/////////////// RENCONTRE \\\\\\\\\\\\\\*/
 
-/*.filter{
-  background-color: #81d4fa;
-  height: 100vh;
-}*/
-
 .checkbox{
   margin-right: 20px;
 }
-/*.selectbox{
-  background-color: white;
-}*/
+
 .question{
   margin-left: 25px;
 }
 .namecard{
+  text-decoration : underline;
   font-size: 25px;
   color: #cc0033;
   margin: 0px 0px 20px 0px;
@@ -155,4 +151,21 @@ margin: 0px;
 }
 .chipcard{
   margin-top: 20px;
+}
+.btnvalid{
+  color: white;
+  background-color: #cc0033;
+  margin-top: 30px;
+}
+
+/*/////////////// PERSO \\\\\\\\\\\\\\*/
+
+.header{
+  padding-top: -200px;
+  background-image: url("/img/header.svg");
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 300px;
 }

@@ -35,4 +35,11 @@ angular.module('app')
           'Long spend'
 
         ];
+        $scope.list = true;
+        console.log($scope.list);
+
+        $scope.showList = function() {
+          $scope.list = false;
+          console.log($scope.list);
+        };
     });

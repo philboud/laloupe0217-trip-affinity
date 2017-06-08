@@ -17,4 +17,5 @@ angular.module('app')
 $scope.profilUser = function(user){
   console.log(user);
 };
+
     });

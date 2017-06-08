@@ -103376,6 +103376,15 @@ angular.module('app')
 
 angular.module('app')
 
+    .controller('PersoController', function($scope, Auth, UserService, CurrentUser, $state) {
+        var userId = CurrentUser.user()._id;
+        $scope.user = CurrentUser.user();
+
+$(function(){ $('.carousel.carousel-slider').carousel({full_width: true}); });
+    });
+
+angular.module('app')
+
 
     .controller('homeController', function($scope, Auth, UserService, Profils) {
 
@@ -103393,6 +103402,7 @@ angular.module('app')
 $scope.profilUser = function(user){
   console.log(user);
 };
+
     });
 
 angular.module('app')
@@ -103461,7 +103471,7 @@ angular.module('app')
 
 angular.module('app')
   .controller('NavbarController', function($scope, Auth, CurrentUser, $timeout, $mdSidenav) {
-
+    
 
   });
 
@@ -103480,7 +103490,7 @@ angular.module('app')
         console.log( CurrentUser.user().pseudo);
               });
 
-
+  
 
 angular.module('app')
   .controller('RegisterController', function($scope, Auth, $state, UserService, $timeout) {
@@ -103499,7 +103509,7 @@ angular.module('app')
         });
       }, 1500);
     }
-
+    
     $scope.addEmail = function() {
       $timeout.cancel(timer);
       searchEmail();
@@ -103559,6 +103569,13 @@ angular.module('app')
           'Long spend'
 
         ];
+        $scope.list = true;
+        console.log($scope.list);
+
+        $scope.showList = function() {
+          $scope.list = false;
+          console.log($scope.list);
+        };
     });
 
 angular.module('app')
@@ -103650,6 +103667,15 @@ angular.module('app')
                     'content@': {
                         templateUrl: 'user/rencontre.html',
                         controller: 'RencontreController'
+                    }
+                }
+            })
+            .state('user.perso', {
+                url: '/perso',
+                views: {
+                    'content@': {
+                        templateUrl: 'user/perso.html',
+                        controller: 'PersoController'
                     }
                 }
             })
@@ -104049,6 +104075,65 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "</nav>\n"
   );
 
+  $templateCache.put("user/perso.html",
+    "<div class=\"row\">\n" +
+    "\n" +
+    "    <div class=\"col s12\">\n" +
+    "\n" +
+    "        <div class=\"col s4\">\n" +
+    "\n" +
+    "            <div class=\"row\">\n" +
+    "\n" +
+    "                <img class=\"col s4 circle responsive-img\" src=\"/img/tatiana2.jpg\" alt=\"\">\n" +
+    "                <p class=\"col s8 namecard valign-wrapper\">TatianaFromRussia</p>\n" +
+    "            </div>\n" +
+    "            <p class=\"subtitle\">I like playing darts and basket-ball and love big surprises...</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">USA, Japan</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">France, Canada, Mexico</p>\n" +
+    "\n" +
+    "            <div class=\"chip chipcard\">Chill\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Long spend\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s8\">\n" +
+    "            <div class=\"col s12\">\n" +
+    "                <div class=\"header\">\n" +
+    "\n" +
+    "                </div>\n" +
+    "                <div class=\"tripreport\">\n" +
+    "                  <div class=\"carousel carousel-slider center\" data-indicators=\"true\">\n" +
+    "                      <div class=\"carousel-item red white-text\" href=\"#one!\">\n" +
+    "                        <h2>First Panel</h2>\n" +
+    "                        <p class=\"white-text\">This is your first panel</p>\n" +
+    "                      </div>\n" +
+    "                      <div class=\"carousel-item amber white-text\" href=\"#two!\">\n" +
+    "                        <h2>Second Panel</h2>\n" +
+    "                        <p class=\"white-text\">This is your second panel</p>\n" +
+    "                      </div>\n" +
+    "                      <div class=\"carousel-item green white-text\" href=\"#three!\">\n" +
+    "                        <h2>Third Panel</h2>\n" +
+    "                        <p class=\"white-text\">This is your third panel</p>\n" +
+    "                      </div>\n" +
+    "                      <div class=\"carousel-item blue white-text\" href=\"#four!\">\n" +
+    "                        <h2>Fourth Panel</h2>\n" +
+    "                        <p class=\"white-text\">This is your fourth panel</p>\n" +
+    "                      </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "</div>\n"
+  );
+
   $templateCache.put("user/profile.html",
     "Profile de {{user.email}}\n"
   );
@@ -104069,25 +104154,25 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"col s6 question\">\n" +
-    "          <p>Speaking :</p>\n" +
-    "          <div class=\"checkBox col s12\">\n" +
-    "              <p class=\"col s6\" ng-repeat=\"langue in langues\">\n" +
-    "                  <input type=\"checkbox\" id=\"{{langue}}\" ng-model=\"langue.isChecked\" />\n" +
-    "                  <label for=\"{{langue}}\">{{langue}}</label>\n" +
-    "              </p>\n" +
-    "          </div>\n" +
+    "            <p>Speaking :</p>\n" +
+    "            <div class=\"checkBox col s12\">\n" +
+    "                <p class=\"col s6\" ng-repeat=\"langue in langues\">\n" +
+    "                    <input type=\"checkbox\" id=\"{{langue}}\" ng-model=\"langue.isChecked\" />\n" +
+    "                    <label for=\"{{langue}}\">{{langue}}</label>\n" +
+    "                </p>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"col s6 question\">\n" +
-    "          <p>who have already visited :</p>\n" +
-    "          <md-input-container>\n" +
-    "            <input type=\"text\" mdInput [formControl]=\"myControl\" [mdAutocomplete]=\"auto\">\n" +
-    "          </md-input-container>\n" +
+    "            <p>who have already visited :</p>\n" +
+    "            <md-input-container>\n" +
+    "                <input type=\"text\" mdInput [formControl]=\"myControl\" [mdAutocomplete]=\"auto\">\n" +
+    "            </md-input-container>\n" +
     "        </div>\n" +
     "        <div class=\"col s6 question\">\n" +
-    "          <p>who wants to go in :</p>\n" +
-    "          <md-input-container>\n" +
-    "              <input type=\"text\" mdInput [formControl]=\"myControl\" [mdAutocomplete]=\"auto\">\n" +
-    "          </md-input-container>\n" +
+    "            <p>who wants to go in :</p>\n" +
+    "            <md-input-container>\n" +
+    "                <input type=\"text\" mdInput [formControl]=\"myControl\" [mdAutocomplete]=\"auto\">\n" +
+    "            </md-input-container>\n" +
     "        </div>\n" +
     "\n" +
     "        <p>Wich kind of traveller do you wanna meet ?</p>\n" +
@@ -104098,27 +104183,32 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                <label for=\"{{type}}\">{{type}}</label>\n" +
     "            </p>\n" +
     "        </div>\n" +
+    "        <a class=\"col s6 btn-large btnvalid\" ng-click=\"showList()\" >Show me the list</a>\n" +
+    "        <a class=\"col s6 btn-large btnvalid\" ng-click=\"risk()\" >I like risk</a>\n" +
+    "\n" +
     "\n" +
     "    </div>\n" +
-    "    <div class=\"col s6 matches \">\n" +
-    "        <h2>Contact them :</h2>\n" +
-    "        <div class=\"col s6 userCard card-panel hoverable\">\n" +
-    "<img class=\"col s4 circle responsive-img\" src=\"/img/tatiana.jpg\" alt=\"\">\n" +
-    "  <p class=\"col s8 namecard valign-wrapper\">TatianaFromRussia</p>\n" +
-    "  <p class=\"subtitle\">I like playing darts and basket-ball and love big surprises...</p>\n" +
-    "<p class=\"col s3 pcard\">Visited :</p>\n" +
-    "<p class=\"col s9 pcard rep\">USA, Japan</p>\n" +
-    "<p class=\"col s3 pcard\">Wish :</p>\n" +
-    "<p class=\"col s9 pcard rep\">France, Canada, Mexico</p>\n" +
+    "    <div class=\"col s6 matches\" >\n" +
+    "        <div class=\"bgsubtitle\">\n" +
+    "            <h2>Contact them :</h2>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 userCard card-panel hoverable\" ng-hide=\"list\">\n" +
+    "            <img class=\"col s4 circle responsive-img\" src=\"/img/tatiana2.jpg\" alt=\"\">\n" +
+    "            <p class=\"col s8 namecard valign-wrapper\">TatianaFromRussia</p>\n" +
+    "            <p class=\"subtitle\">I like playing darts and basket-ball and love big surprises...</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">USA, Japan</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">France, Canada, Mexico</p>\n" +
     "\n" +
-    "<div class=\"chip chipcard\">Chill\n" +
-    "</div>\n" +
-    "<div class=\"chip chipcard\">Backpack\n" +
-    "</div>\n" +
-    "<div class=\"chip chipcard\">Sport\n" +
-    "</div>\n" +
-    "<div class=\"chip chipcard\">Long spend\n" +
-    "</div>\n" +
+    "            <div class=\"chip chipcard\">Chill\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Long spend\n" +
+    "            </div>\n" +
     "\n" +
     "        </div>\n" +
     "\n" +

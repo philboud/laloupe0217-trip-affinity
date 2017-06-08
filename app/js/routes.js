@@ -90,6 +90,15 @@ angular.module('app')
                     }
                 }
             })
+            .state('user.perso', {
+                url: '/perso',
+                views: {
+                    'content@': {
+                        templateUrl: 'user/perso.html',
+                        controller: 'PersoController'
+                    }
+                }
+            })
             .state('user.profile', {
                 url: '/profile',
                 views: {

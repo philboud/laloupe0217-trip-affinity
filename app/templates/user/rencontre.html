@@ -13,25 +13,25 @@
             </div>
         </div>
         <div class="col s6 question">
-          <p>Speaking :</p>
-          <div class="checkBox col s12">
-              <p class="col s6" ng-repeat="langue in langues">
-                  <input type="checkbox" id="{{langue}}" ng-model="langue.isChecked" />
-                  <label for="{{langue}}">{{langue}}</label>
-              </p>
-          </div>
+            <p>Speaking :</p>
+            <div class="checkBox col s12">
+                <p class="col s6" ng-repeat="langue in langues">
+                    <input type="checkbox" id="{{langue}}" ng-model="langue.isChecked" />
+                    <label for="{{langue}}">{{langue}}</label>
+                </p>
+            </div>
         </div>
         <div class="col s6 question">
-          <p>who have already visited :</p>
-          <md-input-container>
-            <input type="text" mdInput [formControl]="myControl" [mdAutocomplete]="auto">
-          </md-input-container>
+            <p>who have already visited :</p>
+            <md-input-container>
+                <input type="text" mdInput [formControl]="myControl" [mdAutocomplete]="auto">
+            </md-input-container>
         </div>
         <div class="col s6 question">
-          <p>who wants to go in :</p>
-          <md-input-container>
-              <input type="text" mdInput [formControl]="myControl" [mdAutocomplete]="auto">
-          </md-input-container>
+            <p>who wants to go in :</p>
+            <md-input-container>
+                <input type="text" mdInput [formControl]="myControl" [mdAutocomplete]="auto">
+            </md-input-container>
         </div>
 
         <p>Wich kind of traveller do you wanna meet ?</p>
@@ -42,27 +42,32 @@
                 <label for="{{type}}">{{type}}</label>
             </p>
         </div>
+        <a class="col s6 btn-large btnvalid" ng-click="showList()" >Show me the list</a>
+        <a class="col s6 btn-large btnvalid" ng-click="risk()" >I like risk</a>
+
 
     </div>
-    <div class="col s6 matches ">
-        <h2>Contact them :</h2>
-        <div class="col s6 userCard card-panel hoverable">
-<img class="col s4 circle responsive-img" src="/img/tatiana.jpg" alt="">
-  <p class="col s8 namecard valign-wrapper">TatianaFromRussia</p>
-  <p class="subtitle">I like playing darts and basket-ball and love big surprises...</p>
-<p class="col s3 pcard">Visited :</p>
-<p class="col s9 pcard rep">USA, Japan</p>
-<p class="col s3 pcard">Wish :</p>
-<p class="col s9 pcard rep">France, Canada, Mexico</p>
+    <div class="col s6 matches" >
+        <div class="bgsubtitle">
+            <h2>Contact them :</h2>
+        </div>
+        <div class="col s6 userCard card-panel hoverable" ng-hide="list">
+            <img class="col s4 circle responsive-img" src="/img/tatiana2.jpg" alt="">
+            <p class="col s8 namecard valign-wrapper">TatianaFromRussia</p>
+            <p class="subtitle">I like playing darts and basket-ball and love big surprises...</p>
+            <p class="col s3 pcard">Visited :</p>
+            <p class="col s9 pcard rep">USA, Japan</p>
+            <p class="col s3 pcard">Wish :</p>
+            <p class="col s9 pcard rep">France, Canada, Mexico</p>
 
-<div class="chip chipcard">Chill
-</div>
-<div class="chip chipcard">Backpack
-</div>
-<div class="chip chipcard">Sport
-</div>
-<div class="chip chipcard">Long spend
-</div>
+            <div class="chip chipcard">Chill
+            </div>
+            <div class="chip chipcard">Backpack
+            </div>
+            <div class="chip chipcard">Sport
+            </div>
+            <div class="chip chipcard">Long spend
+            </div>
 
         </div>
 
