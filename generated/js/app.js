@@ -103413,6 +103413,43 @@ angular.module('app')
 
 angular.module('app')
 
+    .controller('PersoController', function($scope, Auth, UserService, CurrentUser, $state) {
+        var userId = CurrentUser.user()._id;
+        $scope.user = CurrentUser.user();
+
+
+        var i = 1;
+        console.log(i);
+        $scope.nextCarnet = function() {
+          console.log("coucou");
+          i++;
+          $scope.currentImage = "/img/carnet"+i+".jpg";
+
+                console.log(i);
+                if (i > 4) {
+                  i = 1;
+                  $scope.currentImage = "/img/carnet"+i+".jpg";
+
+            }
+        };
+        $scope.prevCarnet = function() {
+          i--;
+          $scope.currentImage = "/img/carnet"+i+".jpg";
+
+          console.log(i);
+            if (i < 1) {
+              i = 5;
+              $scope.currentImage = "/img/carnet"+i+".jpg";
+
+            }
+        };
+
+        $scope.currentImage = "/img/carnet"+i+".jpg";
+          // $scope.currentImage = $scope.images[i];
+    });
+
+angular.module('app')
+
 
     .controller('homeController', function($scope, Auth, UserService, Profils, $state) {
 
@@ -103733,6 +103770,15 @@ angular.module('app')
                     'content@': {
                         templateUrl: 'user/profile.html',
                         controller: 'ProfileController'
+                    }
+                }
+            })
+            .state('user.persomen', {
+                url: '/persomen',
+                views: {
+                    'content@': {
+                        templateUrl: 'user/persomen.html',
+                        controller: 'PersomenController'
                     }
                 }
             });
@@ -104101,24 +104147,14 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "<nav class=\"navbar navbar-default\" role=\"navigation\" ng-controller=\"NavbarController\">\n" +
     "    <div class=\"container-fluid\">\n" +
     "        <div class=\"navbar-header\">\n" +
-    "            <!-- <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navbar\">\n" +
-    "        <span class=\"sr-only\">Toggle navigation</span>\n" +
-    "        <span class=\"icon-bar\"></span>\n" +
-    "        <span class=\"icon-bar\"></span>\n" +
-    "        <span class=\"icon-bar\"></span>\n" +
-    "      </button> -->\n" +
+    "          <img src=\"/img/newlogo.svg\" alt=\"\">\n" +
+    "          \n" +
     "      <ul class=\"right hide-on-med-and-down\">\n" +
     "        <li ui-sref-active=\"active\"><a ui-sref=\"user.home\">Home</a></li>\n" +
     "          <li ui-sref-active=\"active\"><a ui-sref=\"user.rencontre\">Rencontre</a></li>\n" +
     "        <li><a href=\"#!/user/infoperso\">Info perso</a></li>\n" +
-    "        <li><a href=\"#!\">The adventure</a></li>\n" +
-    "        <li><a class=\"dropdown-button\" href=\"#!\" data-activates=\"dropdown1\">Dropdown<i class=\"material-icons right\">arrow_drop_down</i></a></li>\n" +
-    "        <ul id='dropdown1' class='dropdown-content'>\n" +
-    "          <li><a href=\"\">First</a></li>\n" +
-    "          <li><a href=\"#!\">Second</a></li>\n" +
-    "          <li><a href=\"#!\">Third</a></li>\n" +
-    "          <li><a href=\"#!\">Fourth</a></li>\n" +
-    "        </ul>\n" +
+    "            <li ui-sref-active=\"active\"><a ui-sref=\"user.persomen\">Mon profil</a></li>\n" +
+    "\n" +
     "      </ul>\n" +
     "\n" +
     "        </div>\n" +
@@ -104201,6 +104237,80 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                </div> -->\n" +
     "                <div class=\"slider\">\n" +
     "                    <img class=\"fondtest\" src={{currentImage}} alt=\"\">\n" +
+    "                </div>\n" +
+    "\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "\n" +
+    "</div>\n"
+  );
+
+  $templateCache.put("user/persomen.html",
+    "<div class=\"row\">\n" +
+    "\n" +
+    "    <div class=\"col s12\">\n" +
+    "\n" +
+    "        <div class=\"col s4\">\n" +
+    "\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col s12 firstelem\">\n" +
+    "\n" +
+    "                        <img class=\"col s4 circle responsive-img\" src=\"/img/manu.jpg\" alt=\"\">\n" +
+    "\n" +
+    "                        <p class=\"col s8 namecard firstelem center-align\">Manu28</p>\n" +
+    "                        <a class=\"waves-effect light-blue lighten-3 btn btnmess\"><i class=\"material-icons left\">message</i>Message</a>\n" +
+    "\n" +
+    "                </div>\n" +
+    "\n" +
+    "            </div>\n" +
+    "            <p class=\"subtitle\">I like it just like your mum !</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">Nogent-le-Rotrou, Mortagne-au-Perche, Bellou-sur-Huisne, St Aubin-des-Gois, La Loupe</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">Chartres, Paris, Amsterdam, Sri-lanka, Canaria, Canada</p>\n" +
+    "\n" +
+    "            <div class=\"chip chipcard\">Chill\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Long spend\n" +
+    "            </div>\n" +
+    "            <div class=\"row\">\n" +
+    "\n" +
+    "            <h4 class=\"memorys center-align\">Trip Memorys</h4>\n" +
+    "            <div class=\"collections\">\n" +
+    "                <div class=\"col s4 couple\">\n" +
+    "                    <img class=\"collectpic\" src=\"/img/manu1.jpeg\" alt=\"\">\n" +
+    "                    <p class=\"center-align\">Mortagne-au-Perche</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"col s4 couple\">\n" +
+    "                    <img class=\"collectpic\" src=\"/img/manu2.jpg\" alt=\"\">\n" +
+    "                    <p class=\"center-align\">Bellou-sur-Huisne</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"col s4 couple\">\n" +
+    "                    <img class=\"collectpic\" src=\"/img/manu3.jpg\" alt=\"\">\n" +
+    "                    <p class=\"center-align\">St Aubin-des-Gois</p>\n" +
+    "                </div>\n" +
+    "\n" +
+    "            </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"btns\">\n" +
+    "                <a class=\"btn-floating btn-large light-blue lighten-3\" ng-click=\"prevCarnet()\"><i class=\"material-icons\">chevron_left</i></a>\n" +
+    "                <a class=\"btn-floating btn-large light-blue lighten-3\" ng-click=\"nextCarnet()\"><i class=\"material-icons\">chevron_right</i></a>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s8\">\n" +
+    "            <div class=\"col s12\">\n" +
+    "                <!-- <div class=\"header\">\n" +
+    "\n" +
+    "                </div> -->\n" +
+    "                <div class=\"slider\">\n" +
+    "                    <img class=\"fondtest\" src=/img/manu2.jpg alt=\"\">\n" +
     "                </div>\n" +
     "\n" +
     "            </div>\n" +

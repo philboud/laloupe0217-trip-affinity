@@ -107,6 +107,15 @@ angular.module('app')
                         controller: 'ProfileController'
                     }
                 }
+            })
+            .state('user.persomen', {
+                url: '/persomen',
+                views: {
+                    'content@': {
+                        templateUrl: 'user/persomen.html',
+                        controller: 'PersomenController'
+                    }
+                }
             });
         $urlRouterProvider.otherwise('/');
     });
