@@ -183,97 +183,95 @@ angular.module("app").run(["$templateCache", function($templateCache) {
   );
 
   $templateCache.put("user/home.html",
-    "\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col s12 map\">\n" +
-    "        </div>\n" +
-    "        <div class=\"col s6 lastnews\">\n" +
-    "            <div class=\"col s12 z-depth-2 blocknews\">\n" +
-    "                <div class=\"\">\n" +
-    "                    <div class=\"col s4\">\n" +
-    "                        <img src=\"/img/srilanka.jpg\">\n" +
-    "                    </div>\n" +
-    "                    <div class=\"\">\n" +
-    "                        <div class=\"col s8\">\n" +
-    "                            <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
-    "                                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
-    "                            </div>\n" +
-    "                            <p>I just came back from Sri-Lanka ! Amazing trip ! People are so nice. Beautifull landscapes...</p>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"card-action\">\n" +
-    "                            <a href=\"#\">Wanna read more...</a>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"col s12 z-depth-2 blocknews\">\n" +
-    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col s12 map\">\n" +
+    "    </div>\n" +
+    "    <div class=\"col s6 lastnews\">\n" +
+    "      <div class=\"bgsubtitle\">\n" +
+    "      <h2>Last reports</h2>\n" +
+    "    </div>\n" +
+    "      <p class=\"subtitle\">These people went to places you would like to go. Read them reports, chat with them and then why not meeting them.</p>\n" +
+    "        <div class=\"col s12 z-depth-2 blocknews\">\n" +
+    "            <div class=\"\">\n" +
     "                <div class=\"col s4\">\n" +
-    "                    <img src=\"/img/canaria.jpg\">\n" +
+    "                    <img src=\"/img/srilanka.jpg\">\n" +
     "                </div>\n" +
-    "                <div class=\"\">\n" +
-    "                    <div class=\"col s8\">\n" +
-    "                        <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
-    "                            <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
-    "                        </div>\n" +
-    "                        <p>Great surf in Canaria (Fuerte Ventura & Gran Canaria). Also awsome spot for partying ang chilling on the beach</p>\n" +
+    "                <div class=\"col s8\">\n" +
+    "                    <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
+    "                        <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
     "                    </div>\n" +
-    "                    <div class=\"card-action\">\n" +
-    "                        <a href=\"#\">Read my report...</a>\n" +
-    "                    </div>\n" +
-    "\n" +
+    "                    <p>I just came back from Sri-Lanka ! Amazing trip ! People are so nice. Beautifull landscapes...</p>\n" +
     "                </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"col s12 z-depth-2 blocknews\">\n" +
-    "                <div class=\"col s4\">\n" +
-    "                    <img src=\"http://lorempixel.com/100/190/nature/6\">\n" +
-    "                </div>\n" +
-    "                <div class=\"\">\n" +
-    "                    <div class=\"col s8\">\n" +
-    "                        <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
-    "                            <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
-    "                        </div>\n" +
-    "                        <p>I just came back from Sri-Lanka ! Amazing trip ! People are so nice. Beautifull landscapes...</p>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"card-action\">\n" +
-    "                        <a href=\"#\">Wanna read more...</a>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"col s4 blog\">\n" +
-    "            <div class=\"col s12 z-depth-2\">\n" +
-    "                <div class=\"\">\n" +
-    "                    <img src=\"/img/canada.jpg\">\n" +
-    "                    <span class=\"cardtitle\">Canada cold but cool !</span>\n" +
-    "                </div>\n" +
-    "                <div class=\"\">\n" +
-    "                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>\n" +
-    "                </div>\n" +
-    "                <div class=\"\">\n" +
+    "                <div class=\"card-action\">\n" +
     "                    <a href=\"#\">Wanna read more...</a>\n" +
     "                </div>\n" +
+    "\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "        <div class=\"col s2 newpeople\">\n" +
-    "            <h2>Have you ever met :</h2>\n" +
-    "            <div class=\"chip rightsuggest\" ng-repeat=\"user in users\" ng-click=\"profilUser(userName)\">\n" +
-    "                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> {{user}}\n" +
+    "        <div class=\"col s12 z-depth-2 blocknews\">\n" +
+    "\n" +
+    "            <div class=\"col s4\">\n" +
+    "                <img src=\"/img/canaria.jpg\">\n" +
     "            </div>\n" +
-    "            <div class=\"chip rightsuggest\">\n" +
-    "                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "            <div class=\"\">\n" +
+    "                <div class=\"col s8\">\n" +
+    "                    <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
+    "                        <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "                    </div>\n" +
+    "                    <p>Great surf in Canaria (Fuerte Ventura & Gran Canaria). Also awsome spot for partying ang chilling on the beach</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"card-action\">\n" +
+    "                    <a href=\"#\">Read my report...</a>\n" +
+    "                </div>\n" +
+    "\n" +
     "            </div>\n" +
-    "            <div class=\"chip rightsuggest\">\n" +
-    "                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "        </div>\n" +
+    "        <div class=\"col s12 z-depth-2 blocknews\">\n" +
+    "            <div class=\"col s4\">\n" +
+    "                <img src=\"/img/canada.jpg\">\n" +
     "            </div>\n" +
-    "            <div class=\"chip rightsuggest\">\n" +
-    "                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "            <div class=\"col s8\">\n" +
+    "                <div class=\"col s4 offset-s8 chip chiplastnews\">\n" +
+    "                    <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "                </div>\n" +
+    "                <p>Canada cold but cool !</p>\n" +
     "            </div>\n" +
-    "            <div class=\"chip rightsuggest\">\n" +
-    "                <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> Jane Doe\n" +
+    "            <div class=\"card-action\">\n" +
+    "                <a href=\"#\">Wanna read more...</a>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "    <div class=\"col s4 blog\">\n" +
+    "      <div class=\"bgsubtitle\">\n" +
+    "      <h2>Must Match of the day</h2>\n" +
+    "    </div>\n" +
+    "      <p class=\"subtitle\" >You have so much in common with this person... <br> <br></p>\n" +
+    "        <div class=\"col s12 z-depth-2\">\n" +
+    "            <img class=\"picsprofil\" src=\"/img/tatiana.jpg\">\n" +
+    "            <span class=\"cardtitle\">TatianaFromRussia</span>\n" +
+    "            <div class=\"\">\n" +
+    "                <p>I dream from long time ago to go to France and specialy in \"La Ferté Vidame\" ! I like playing darts and basket-ball and love big surprises...</p>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col s3 offset-s9\">\n" +
+    "                <i class=\"material-icons\">person</i>\n" +
+    "                <i class=\"material-icons\">message</i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"col s2 newpeople\">\n" +
+    "      <div class=\"bgsubtitle\">\n" +
+    "        <h2>Have you ever met :</h2>\n" +
+    "      </div>\n" +
+    "        <p class=\"subtitle\">here are the latest registered trippers</p>\n" +
+    "        <div class=\"chip rightsuggest\" ng-repeat=\"user in users\" ng-click=\"profilUser(user)\">\n" +
+    "            <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> {{user}}{{country}}\n" +
+    "        </div>\n" +
+    "        <div class=\"chat\">\n" +
+    "\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "</div>\n"
   );
 
