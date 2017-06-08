@@ -8,21 +8,29 @@ angular.module('app')
         var i = 1;
         console.log(i);
         $scope.nextCarnet = function() {
-            if (i < 6) {
-                i++;
+          console.log("coucou");
+          i++;
+          $scope.currentImage = "/img/carnet"+i+".jpg";
+
+                console.log(i);
+                if (i > 4) {
+                  i = 1;
+                  $scope.currentImage = "/img/carnet"+i+".jpg";
+
             }
-            i = 1;
         };
         $scope.prevCarnet = function() {
-            if (i > 0) {
-                i--;
+          i--;
+          $scope.currentImage = "/img/carnet"+i+".jpg";
+
+          console.log(i);
+            if (i < 1) {
+              i = 5;
+              $scope.currentImage = "/img/carnet"+i+".jpg";
+
             }
-            i = 5;
         };
 
-        // $scope.images = [
-        //   "/img/carnet1.jpeg",
-        //
-        // ]
-        // $scope.image = "/img/carnet" i ".jpeg";
+        $scope.currentImage = "/img/carnet"+i+".jpg";
+          // $scope.currentImage = $scope.images[i];
     });

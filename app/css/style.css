@@ -10,7 +10,8 @@ h2{
 h3{
   font-size: 12px;
   font-weight: bold;
-  color:
+  color: white;
+  background-color: #81d4fa;
 }
 .bgsubtitle{
   background-color: #cc0033;
@@ -127,7 +128,10 @@ margin-bottom: 20px;
   top: 10%; left: 90%;
   transform: translate(-50%, -50%);
 }
-
+.close{
+  color: white;
+  text-align: right;
+}
 /*/////////////// RENCONTRE \\\\\\\\\\\\\\*/
 
 .checkbox{
@@ -172,4 +176,15 @@ margin: 0px;
 .imgslider{
   background-color: red;
   width: 1000px;
+}
+.fondtest{
+height: auto;
+}
+.memorys{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.collectpic{
+  border: solid 1px white;
 }

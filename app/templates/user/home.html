@@ -2,10 +2,10 @@
     <div class="col s12 map">
     </div>
     <div class="col s6 lastnews">
-      <div class="bgsubtitle">
-      <h2>Last reports</h2>
-    </div>
-      <p class="subtitle">These people went to places you would like to go. Read them reports, chat with them and then why not meeting them.</p>
+        <div class="bgsubtitle">
+            <h2>Last reports</h2>
+        </div>
+        <p class="subtitle">These people went to places you would like to go. Read them reports, chat with them and then why not meeting them.</p>
         <div class="col s12 z-depth-2 blocknews">
             <div class="">
                 <div class="col s4">
@@ -57,10 +57,10 @@
         </div>
     </div>
     <div class="col s4 blog">
-      <div class="bgsubtitle">
-      <h2>Must Match of the day</h2>
-    </div>
-      <p class="subtitle" >You have so much in common with this person... <br> <br></p>
+        <div class="bgsubtitle">
+            <h2>Must Match of the day</h2>
+        </div>
+        <p class="subtitle">You have so much in common with this person... <br> <br></p>
         <div class="col s12 z-depth-2">
             <img class="picsprofil" src="/img/tatiana.jpg">
             <span class="cardtitle">TatianaFromRussia</span>
@@ -69,33 +69,36 @@
             </div>
 
             <div class="col s3 offset-s9">
-                <i class="material-icons">person</i>
-                <i class="material-icons">message</i>
+                <i class="material-icons" ng-click="goToProfil()">person</i>
+                <i class="material-icons"ng-click="openChat()">message</i>
             </div>
         </div>
     </div>
     <div class="col s2 newpeople">
-      <div class="bgsubtitle">
-        <h2>Have you ever met :</h2>
-      </div>
+        <div class="bgsubtitle">
+            <h2>Have you ever met :</h2>
+        </div>
         <p class="subtitle">here are the latest registered trippers</p>
         <div class="chip rightsuggest" ng-repeat="user in users" ng-click="profilUser(user)">
-            <img src="/img/"{{user}}".jpg" alt="Contact Person"> {{user}}
+            <img src="/img/" {{user}} ".jpg" alt="Contact Person"> {{user}}
         </div>
-        <div class="chat">
-<h3>TatianaFromRussia</h3>
+        <div class="row" ng-hide="chat">
+            <div class="chat z-depth-2">
+                <h3>TatianaFromRussia</h3>
 
-  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Textarea</label>
-        </div>
-      </div>
-    </form>
-  </div>
-        
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="textarea1" class="materialize-textarea" ng-model="message"></textarea>
+                                <label for="textarea1" >Textarea</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <a class="waves-effect  light-blue lighten-3 btn" ng-click="send()"><i class="material-icons left">send</i>Send</a>
+                <a class="waves-effect  light-blue lighten-3 btn" ng-click="closeChat()">X</a>
+            </div>
         </div>
     </div>
 </div>

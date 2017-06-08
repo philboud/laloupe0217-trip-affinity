@@ -13,9 +13,27 @@ angular.module('app')
             $scope.countrys.push(element.country);
             console.log('  $scope.countrys', $scope.countrys);
         });
+  $scope.chat = true;
+
+$scope.openChat = function(){
+  $scope.chat = false;
+};
+
+$scope.closeChat = function(){
+  $scope.chat = true;
+};
+
 
 $scope.profilUser = function(user){
   console.log(user);
+};
+
+$scope.message="";
+
+$scope.send = function(){
+  console.log("hi");
+  console.log($scope.message);
+  $scope.message="";
 };
 
     });

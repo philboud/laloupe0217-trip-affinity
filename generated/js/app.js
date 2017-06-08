@@ -103384,23 +103384,31 @@ angular.module('app')
         var i = 1;
         console.log(i);
         $scope.nextCarnet = function() {
-            if (i < 6) {
-                i++;
+          console.log("coucou");
+          i++;
+          $scope.currentImage = "/img/carnet"+i+".jpg";
+
+                console.log(i);
+                if (i > 4) {
+                  i = 1;
+                  $scope.currentImage = "/img/carnet"+i+".jpg";
+
             }
-            i = 1;
         };
         $scope.prevCarnet = function() {
-            if (i > 0) {
-                i--;
+          i--;
+          $scope.currentImage = "/img/carnet"+i+".jpg";
+
+          console.log(i);
+            if (i < 1) {
+              i = 5;
+              $scope.currentImage = "/img/carnet"+i+".jpg";
+
             }
-            i = 5;
         };
 
-        // $scope.images = [
-        //   "/img/carnet1.jpeg",
-        //
-        // ]
-        // $scope.image = "/img/carnet" i ".jpeg";
+        $scope.currentImage = "/img/carnet"+i+".jpg";
+          // $scope.currentImage = $scope.images[i];
     });
 
 angular.module('app')
@@ -103418,9 +103426,27 @@ angular.module('app')
             $scope.countrys.push(element.country);
             console.log('  $scope.countrys', $scope.countrys);
         });
+  $scope.chat = true;
+
+$scope.openChat = function(){
+  $scope.chat = false;
+};
+
+$scope.closeChat = function(){
+  $scope.chat = true;
+};
+
 
 $scope.profilUser = function(user){
   console.log(user);
+};
+
+$scope.message="";
+
+$scope.send = function(){
+  console.log("hi");
+  console.log($scope.message);
+  $scope.message="";
 };
 
     });
@@ -103900,10 +103926,10 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "    <div class=\"col s12 map\">\n" +
     "    </div>\n" +
     "    <div class=\"col s6 lastnews\">\n" +
-    "      <div class=\"bgsubtitle\">\n" +
-    "      <h2>Last reports</h2>\n" +
-    "    </div>\n" +
-    "      <p class=\"subtitle\">These people went to places you would like to go. Read them reports, chat with them and then why not meeting them.</p>\n" +
+    "        <div class=\"bgsubtitle\">\n" +
+    "            <h2>Last reports</h2>\n" +
+    "        </div>\n" +
+    "        <p class=\"subtitle\">These people went to places you would like to go. Read them reports, chat with them and then why not meeting them.</p>\n" +
     "        <div class=\"col s12 z-depth-2 blocknews\">\n" +
     "            <div class=\"\">\n" +
     "                <div class=\"col s4\">\n" +
@@ -103955,10 +103981,10 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "        </div>\n" +
     "    </div>\n" +
     "    <div class=\"col s4 blog\">\n" +
-    "      <div class=\"bgsubtitle\">\n" +
-    "      <h2>Must Match of the day</h2>\n" +
-    "    </div>\n" +
-    "      <p class=\"subtitle\" >You have so much in common with this person... <br> <br></p>\n" +
+    "        <div class=\"bgsubtitle\">\n" +
+    "            <h2>Must Match of the day</h2>\n" +
+    "        </div>\n" +
+    "        <p class=\"subtitle\">You have so much in common with this person... <br> <br></p>\n" +
     "        <div class=\"col s12 z-depth-2\">\n" +
     "            <img class=\"picsprofil\" src=\"/img/tatiana.jpg\">\n" +
     "            <span class=\"cardtitle\">TatianaFromRussia</span>\n" +
@@ -103967,33 +103993,36 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            </div>\n" +
     "\n" +
     "            <div class=\"col s3 offset-s9\">\n" +
-    "                <i class=\"material-icons\">person</i>\n" +
-    "                <i class=\"material-icons\">message</i>\n" +
+    "                <i class=\"material-icons\" ng-click=\"goToProfil()\">person</i>\n" +
+    "                <i class=\"material-icons\"ng-click=\"openChat()\">message</i>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "    <div class=\"col s2 newpeople\">\n" +
-    "      <div class=\"bgsubtitle\">\n" +
-    "        <h2>Have you ever met :</h2>\n" +
-    "      </div>\n" +
+    "        <div class=\"bgsubtitle\">\n" +
+    "            <h2>Have you ever met :</h2>\n" +
+    "        </div>\n" +
     "        <p class=\"subtitle\">here are the latest registered trippers</p>\n" +
     "        <div class=\"chip rightsuggest\" ng-repeat=\"user in users\" ng-click=\"profilUser(user)\">\n" +
-    "            <img src=\"/img/\"{{user}}\".jpg\" alt=\"Contact Person\"> {{user}}\n" +
+    "            <img src=\"/img/\" {{user}} \".jpg\" alt=\"Contact Person\"> {{user}}\n" +
     "        </div>\n" +
-    "        <div class=\"chat\">\n" +
-    "<h3>TatianaFromRussia</h3>\n" +
+    "        <div class=\"row\" ng-hide=\"chat\">\n" +
+    "            <div class=\"chat z-depth-2\">\n" +
+    "                <h3>TatianaFromRussia</h3>\n" +
     "\n" +
-    "  <div class=\"row\">\n" +
-    "    <form class=\"col s12\">\n" +
-    "      <div class=\"row\">\n" +
-    "        <div class=\"input-field col s12\">\n" +
-    "          <textarea id=\"textarea1\" class=\"materialize-textarea\"></textarea>\n" +
-    "          <label for=\"textarea1\">Textarea</label>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "    </form>\n" +
-    "  </div>\n" +
-    "        \n" +
+    "                <div class=\"row\">\n" +
+    "                    <form class=\"col s12\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"input-field col s12\">\n" +
+    "                                <textarea id=\"textarea1\" class=\"materialize-textarea\" ng-model=\"message\"></textarea>\n" +
+    "                                <label for=\"textarea1\" >Textarea</label>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </form>\n" +
+    "                </div>\n" +
+    "                <a class=\"waves-effect  light-blue lighten-3 btn\" ng-click=\"send()\"><i class=\"material-icons left\">send</i>Send</a>\n" +
+    "                <a class=\"waves-effect  light-blue lighten-3 btn\" ng-click=\"closeChat()\">X</a>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -104121,21 +104150,35 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            </div>\n" +
     "            <div class=\"chip chipcard\">Long spend\n" +
     "            </div>\n" +
+    "<span class=\"memorys\">Trip Memorys</span>\n" +
+    "<div class=\"collections\">\n" +
+    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
+    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
+    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
+    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
+    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
+    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
+    "\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "            <div class=\"btns\">\n" +
+    "                <a class=\"btn-floating btn-large\" ng-click=\"prevCarnet()\"><i class=\"material-icons\">chevron_left</i></a>\n" +
+    "                  <a class=\"btn-floating btn-large\" ng-click=\"nextCarnet()\"><i class=\"material-icons\">chevron_right</i></a>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"col s8\">\n" +
     "            <div class=\"col s12\">\n" +
-    "                <div class=\"header\">\n" +
+    "                <!-- <div class=\"header\">\n" +
     "\n" +
-    "                </div>\n" +
+    "                </div> -->\n" +
     "<div class=\"slider\">\n" +
-    "    <img src=\"/img/carnet\"{{i}}\".jpeg\" alt=\"\">\n" +
+    "    <img class=\"fondtest\" src=  {{currentImage}} alt=\"\">\n" +
     "\n" +
     "</div>\n" +
-    "<div class=\"btns\">\n" +
-    "    <a class=\"btn-floating btn-large waves-effect waves-light red\" ng-click=\"prevCarnet\"><i class=\"material-icons\">chevron_left</i></a>\n" +
-    "      <a class=\"btn-floating btn-large waves-effect waves-light red\" ng-click=\"nextCarnet\"><i class=\"material-icons\">chevron_right</i></a>\n" +
     "\n" +
-    "</div>\n" +
     "\n" +
     "\n" +
     "            </div>\n" +
