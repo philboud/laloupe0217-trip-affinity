@@ -393,13 +393,19 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "        <div class=\"col s4\">\n" +
     "\n" +
     "            <div class=\"row\">\n" +
+    "                <div class=\"col s12 firstelem\">\n" +
     "\n" +
-    "                <img class=\"col s4 circle responsive-img\" src=\"/img/tatiana2.jpg\" alt=\"\">\n" +
-    "                <p class=\"col s8 namecard valign-wrapper\">TatianaFromRussia</p>\n" +
+    "                        <img class=\"col s4 circle responsive-img\" src=\"/img/tatiana2.jpg\" alt=\"\">\n" +
+    "\n" +
+    "                        <p class=\"col s8 namecard firstelem center-align\">TatianaFromRussia</p>\n" +
+    "                        <a class=\"waves-effect light-blue lighten-3 btn btnmess\"><i class=\"material-icons left\">message</i>Message</a>\n" +
+    "\n" +
+    "                </div>\n" +
+    "\n" +
     "            </div>\n" +
     "            <p class=\"subtitle\">I like playing darts and basket-ball and love big surprises...</p>\n" +
     "            <p class=\"col s3 pcard\">Visited :</p>\n" +
-    "            <p class=\"col s9 pcard rep\">USA, Japan</p>\n" +
+    "            <p class=\"col s9 pcard rep\">USA, Sounth africa, Brazil, Portugal, India</p>\n" +
     "            <p class=\"col s3 pcard\">Wish :</p>\n" +
     "            <p class=\"col s9 pcard rep\">France, Canada, Mexico</p>\n" +
     "\n" +
@@ -411,7 +417,9 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            </div>\n" +
     "            <div class=\"chip chipcard\">Long spend\n" +
     "            </div>\n" +
-    "            <span class=\"memorys\">Trip Memorys</span>\n" +
+    "            <div class=\"row\">\n" +
+    "\n" +
+    "            <h4 class=\"memorys center-align\">Trip Memorys</h4>\n" +
     "            <div class=\"collections\">\n" +
     "                <div class=\"col s4 couple\">\n" +
     "                    <img class=\"collectpic\" src=\"/img/carnet1.jpg\" alt=\"\">\n" +
@@ -438,13 +446,11 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                    <p class=\"center-align\">Portugal</p>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "\n" +
-    "\n" +
-    "\n" +
+    "            </div>\n" +
     "\n" +
     "            <div class=\"btns\">\n" +
-    "                <a class=\"btn-floating btn-large\" ng-click=\"prevCarnet()\"><i class=\"material-icons\">chevron_left</i></a>\n" +
-    "                <a class=\"btn-floating btn-large\" ng-click=\"nextCarnet()\"><i class=\"material-icons\">chevron_right</i></a>\n" +
+    "                <a class=\"btn-floating btn-large light-blue lighten-3\" ng-click=\"prevCarnet()\"><i class=\"material-icons\">chevron_left</i></a>\n" +
+    "                <a class=\"btn-floating btn-large light-blue lighten-3\" ng-click=\"nextCarnet()\"><i class=\"material-icons\">chevron_right</i></a>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"col s8\">\n" +
@@ -458,6 +464,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "\n" +
     "            </div>\n" +
     "        </div>\n" +
+    "\n" +
     "    </div>\n" +
     "\n" +
     "</div>\n"
