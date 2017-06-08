@@ -103480,7 +103480,7 @@ angular.module('app')
 
 angular.module('app')
   .controller('NavbarController', function($scope, Auth, CurrentUser, $timeout, $mdSidenav) {
-    
+
 
   });
 
@@ -103499,7 +103499,7 @@ angular.module('app')
         console.log( CurrentUser.user().pseudo);
               });
 
-  
+
 
 angular.module('app')
   .controller('RegisterController', function($scope, Auth, $state, UserService, $timeout) {
@@ -103518,7 +103518,7 @@ angular.module('app')
         });
       }, 1500);
     }
-    
+
     $scope.addEmail = function() {
       $timeout.cancel(timer);
       searchEmail();
