@@ -330,7 +330,6 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                                    <div class=\"row\">\n" +
     "                                        <form class=\"col s12\">\n" +
     "\n" +
-    "\n" +
     "                                    </div>\n" +
     "\n" +
     "                            </div>\n" +

@@ -103351,28 +103351,6 @@ angular.module('app')
     });
 
 angular.module('app')
-    .service('InfopersoService', function($http, LocalService) {
-        return {
-
-          create: function(infopersos) {
-             return $http.post('/infopersos/',infopersos);
-         },
-            getAll: function() {
-                return $http.get('/infopersos');
-            },
-            getOne: function(id) {
-                return $http.get('/infopersos/' + id);
-            },
-            update: function(id, user) {
-                return $http.put('/infopersos/' + id, user);
-            },
-            delete: function(id) {
-                return $http.delete('/infopersos/' + id);
-            }
-        };
-    });
-
-angular.module('app')
   .service('UserService', function($http, LocalService) {
     return {
       getAll: function() {
@@ -103418,10 +103396,10 @@ $scope.profilUser = function(user){
     });
 
 angular.module('app')
-    .controller('InfopersoController', function($scope, CurrentUser, UserService, InfopersoService ) {
+    .controller('InfopersoController', function($scope, CurrentUser, UserService) {
 
         var userId = CurrentUser.user()._id;
-        console.log(CurrentUser.user().pseudo);
+        console.log(CurrentUser.user());
 
 
 
@@ -103430,7 +103408,7 @@ angular.module('app')
               'Femme'
           ];
 
-        $scope.infoperso = [];
+        $scope.infoperso = {};
 
         $scope.valide = function() {
             var infopersos = {
@@ -103441,9 +103419,11 @@ angular.module('app')
                 complement: $scope.complement,
                 photo: $scope.photo
             };
-            $scope.infoperso.push(infopersos);
+            $scope.infoperso = (infopersos);
             console.log($scope.infoperso);
-            InfopersoService.create(infopersos).then(function(res) {});
+            console.log(userId);
+            UserService.update(userId,infopersos).then(function(res) {});
+
         };
         });
 
@@ -103968,7 +103948,6 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                                    </div>\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <form class=\"col s12\">\n" +
-    "\n" +
     "\n" +
     "                                    </div>\n" +
     "\n" +

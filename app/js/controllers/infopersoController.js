@@ -1,8 +1,8 @@
 angular.module('app')
-    .controller('InfopersoController', function($scope, CurrentUser, UserService, InfopersoService ) {
+    .controller('InfopersoController', function($scope, CurrentUser, UserService) {
 
         var userId = CurrentUser.user()._id;
-        console.log(CurrentUser.user().pseudo);
+        console.log(CurrentUser.user());
 
 
 
@@ -11,7 +11,7 @@ angular.module('app')
               'Femme'
           ];
 
-        $scope.infoperso = [];
+        $scope.infoperso = {};
 
         $scope.valide = function() {
             var infopersos = {
@@ -22,8 +22,10 @@ angular.module('app')
                 complement: $scope.complement,
                 photo: $scope.photo
             };
-            $scope.infoperso.push(infopersos);
+            $scope.infoperso = (infopersos);
             console.log($scope.infoperso);
-            InfopersoService.create(infopersos).then(function(res) {});
+            console.log(userId);
+            UserService.update(userId,infopersos).then(function(res) {});
+
         };
         });
