@@ -414,26 +414,17 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                <div class=\"header\">\n" +
     "\n" +
     "                </div>\n" +
-    "                <div class=\"tripreport\">\n" +
-    "                  <div class=\"carousel carousel-slider center\" data-indicators=\"true\">\n" +
-    "                      <div class=\"carousel-item red white-text\" href=\"#one!\">\n" +
-    "                        <h2>First Panel</h2>\n" +
-    "                        <p class=\"white-text\">This is your first panel</p>\n" +
-    "                      </div>\n" +
-    "                      <div class=\"carousel-item amber white-text\" href=\"#two!\">\n" +
-    "                        <h2>Second Panel</h2>\n" +
-    "                        <p class=\"white-text\">This is your second panel</p>\n" +
-    "                      </div>\n" +
-    "                      <div class=\"carousel-item green white-text\" href=\"#three!\">\n" +
-    "                        <h2>Third Panel</h2>\n" +
-    "                        <p class=\"white-text\">This is your third panel</p>\n" +
-    "                      </div>\n" +
-    "                      <div class=\"carousel-item blue white-text\" href=\"#four!\">\n" +
-    "                        <h2>Fourth Panel</h2>\n" +
-    "                        <p class=\"white-text\">This is your fourth panel</p>\n" +
-    "                      </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
+    "<div class=\"slider\">\n" +
+    "    <img src=\"/img/carnet\"{{i}}\".jpeg\" alt=\"\">\n" +
+    "\n" +
+    "</div>\n" +
+    "<div class=\"btns\">\n" +
+    "    <a class=\"btn-floating btn-large waves-effect waves-light red\" ng-click=\"prevCarnet\"><i class=\"material-icons\">chevron_left</i></a>\n" +
+    "      <a class=\"btn-floating btn-large waves-effect waves-light red\" ng-click=\"nextCarnet\"><i class=\"material-icons\">chevron_right</i></a>\n" +
+    "\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +

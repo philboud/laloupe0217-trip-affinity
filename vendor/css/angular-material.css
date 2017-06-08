@@ -33302,6 +33302,10 @@ margin: 0px;
   width: 100%;
   height: 300px;
 }
+.imgslider{
+  background-color: red;
+  width: 1000px;
+}
 
 @font-face {
   font-family: 'Material Icons';
