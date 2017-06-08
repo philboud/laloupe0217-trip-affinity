@@ -1,6 +1,7 @@
 angular.module('app')
     .service('InfopersoService', function($http, LocalService) {
         return {
+
           create: function(infopersos) {
              return $http.post('/infopersos/',infopersos);
          },

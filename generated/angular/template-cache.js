@@ -294,56 +294,64 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "    <div class=\"infoform\">\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-xs-6 col-xs-offset-3\">\n" +
-    "                <h3>Trip-Affinity</h3>\n" +
-    "                <h1>Complément d'information</h1>\n" +
+    "                <h1>Trip-Affinity</h1>\n" +
+    "                <h3>Complément d'information</h3>\n" +
     "                <div class=\"row\">\n" +
     "                    <div class=\"col s12\">\n" +
-    "                        <div class=\"input-field inline\">\n" +
-    "                            <input id=\"photo\" type=\"text\" class=\"validate\" ng-model=\"photo\">\n" +
-    "                            <label for=\"photo\">Photo</label>\n" +
+    "                        <div class=\"photo\">\n" +
+    "                            <div class=\"col-md-6\">\n" +
+    "                                <div class=\"photodim\">\n" +
+    "                                    <img src=\"/img/mila.jpg\" alt=\"\">\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <br><br><br>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <form class=\"col s12\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <div class=\"input-field col s6\">\n" +
+    "                                            <input id=\"first_name\" type=\"text\" class=\"validate\" ng-model=\"prenom\">\n" +
+    "                                            <label for=\"first_name\">Prénom</label>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"input-field col s6\">\n" +
+    "                                            <input id=\"last_name\" type=\"text\" class=\"validate\" ng-model=\"nom\">\n" +
+    "                                            <label for=\"last_name\">Nom</label>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <div class=\"input-field col s6\">\n" +
+    "                                            <input id=\"pseudo\" type=\"text\" class=\"validate\" ng-model=\"pseudo\">\n" +
+    "                                            <label for=\"pseudo\">Pseudo</label>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"input-field col 6\">\n" +
+    "                                            <md-select placeholder=\"Indiquer votre sexe\" ng-model=\"sexe\">\n" +
+    "                                                <md-option ng-repeat=\"sexe in genres\" value=\"{{sexe}}\">{{sexe}}</md-option>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <form class=\"col s12\">\n" +
+    "\n" +
+    "\n" +
+    "                                    </div>\n" +
+    "\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col s12\">\n" +
+    "                                    <div class=\"input-field inline\">\n" +
+    "                                        <textarea id=\"text\" class=\"materialize-textarea\" ng-model=\"complement\"></textarea>\n" +
+    "                                        <label for=\"text\">Complement</label>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <button type=\"button\" class=\"btn btn-default\" ng-click=\"valide()\">Valider</button>\n" +
+    "                            </form>\n" +
     "                        </div>\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <form class=\"col s12\">\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    <div class=\"input-field col s6\">\n" +
-    "                                        <input id=\"first_name\" type=\"text\" class=\"validate\" ng-model=\"prenom\">\n" +
-    "                                        <label for=\"first_name\">Prénom</label>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"input-field col s6\">\n" +
-    "                                        <input id=\"last_name\" type=\"text\" class=\"validate\" ng-model=\"nom\">\n" +
-    "                                        <label for=\"last_name\">Nom</label>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"row\">\n" +
-    "                                    <form class=\"col s12\">\n" +
-    "                                        <div class=\"row\">\n" +
-    "                                            <div class=\"input-field col s6\">\n" +
-    "                                                <input id=\"pseudo\" type=\"text\" class=\"validate\" ng-model=\"pseudo\">\n" +
-    "                                                <label for=\"pseudo\">Pseudo</label>\n" +
-    "                                            </div>\n" +
-    "                                            <div class=\"input-field col s6\">\n" +
-    "                                                <input id=\"sexe\" type=\"text\" class=\"validate\" ng-model=\"sexe\">\n" +
-    "                                                <label for=\"sexe\">Sexe</label>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"row\">\n" +
-    "                                            <div class=\"col s12\">\n" +
-    "                                                <div class=\"input-field inline\">\n" +
-    "                                                    <textarea id=\"text\" class=\"materialize-textarea\" ng-model=\"complement\"></textarea>\n" +
-    "                                                    <label for=\"text\">Complement</label>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                        <button type=\"button\" class=\"btn btn-default\" ng-click=\"valide()\">Valider</button>\n" +
-    "                                    </form>\n" +
-    "                                </div>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                    </form>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
+    "                </form>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "    </div>\n"
+    "    </div>\n" +
+    "</div>\n"
   );
 
   $templateCache.put("user/navbar.html",
