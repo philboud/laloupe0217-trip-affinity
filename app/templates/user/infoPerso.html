@@ -1,15 +1,63 @@
 <div class="container back">
 
 
-<div class="modalform">
+    <div class="infoform">
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <h1>Trip-Affinity</h1>
+                <h3>Complément d'information</h3>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="photo">
+                            <div class="col-md-6">
+                                <div class="photodim">
+                                    <img src="/img/mila.jpg" alt="">
+                                </div>
+                            </div>
+                            <br><br><br>
+                            <div class="row">
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input id="first_name" type="text" class="validate" ng-model="prenom">
+                                            <label for="first_name">Prénom</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input id="last_name" type="text" class="validate" ng-model="nom">
+                                            <label for="last_name">Nom</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input id="pseudo" type="text" class="validate" ng-model="pseudo">
+                                            <label for="pseudo">Pseudo</label>
+                                        </div>
+                                        <div class="input-field col 6">
+                                            <md-select placeholder="Indiquer votre sexe" ng-model="sexe">
+                                                <md-option ng-repeat="sexe in genres" value="{{sexe}}">{{sexe}}</md-option>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <form class="col s12">
 
-<div class="row">
-    <div class="col-xs-6 col-xs-offset-3">
-      <h3>Trip-Affinity</h3>
-      <h1>L'affaire est dans le sac...à dos!</h1>
-      
-        </form>
+                                    </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="input-field inline">
+                                        <textarea id="text" class="materialize-textarea" ng-model="complement"></textarea>
+                                        <label for="text">Complement</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-default" ng-click="valide()">Valider</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </div>

@@ -24,7 +24,22 @@ const userSchema = new mongoose.Schema({
     },
     pseudo:{
       type: String,
-    }
+    },
+    photo: {
+        type: String
+      },
+      nom: {
+          type: String
+      },
+      prenom: {
+          type: String
+      },
+      sexe: {
+          type: String
+      },
+      complement: {
+          type: String
+      }
 
 });
 
@@ -125,19 +140,18 @@ export default class User {
     }
 
     update(req, res) {
+      console.log('body', req.body);
         model.update({
             _id: req.params.id
         }, req.body, (err, user) => {
+            console.log('res', user, err);
             if (err || !user) {
                 res.status(500).send(err.message);
             } else {
-                let tk = jsonwebtoken.sign(user, token, {
-                    expiresIn: "24h"
-                });
                 res.json({
                     success: true,
                     user: user,
-                    token: tk
+
                 });
             }
         });

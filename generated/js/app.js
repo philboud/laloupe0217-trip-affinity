@@ -103396,6 +103396,38 @@ $scope.profilUser = function(user){
     });
 
 angular.module('app')
+    .controller('InfopersoController', function($scope, CurrentUser, UserService) {
+
+        var userId = CurrentUser.user()._id;
+        console.log(CurrentUser.user());
+
+
+
+        $scope.genres = [
+              'Homme',
+              'Femme'
+          ];
+
+        $scope.infoperso = {};
+
+        $scope.valide = function() {
+            var infopersos = {
+                nom: $scope.nom,
+                prenom: $scope.prenom,
+                sexe: $scope.sexe,
+                pseudo: $scope.pseudo,
+                complement: $scope.complement,
+                photo: $scope.photo
+            };
+            $scope.infoperso = (infopersos);
+            console.log($scope.infoperso);
+            console.log(userId);
+            UserService.update(userId,infopersos).then(function(res) {});
+
+        };
+        });
+
+angular.module('app')
     .controller('LoginController', function($scope, $state, Auth) {
         $scope.errors = [];
           $scope.inputType = "password";
@@ -103446,38 +103478,9 @@ angular.module('app')
 
         var userId = CurrentUser.user()._id;
         console.log( CurrentUser.user().pseudo);
+              });
 
-        $scope.goToHome = function() {
-            $state.go('user.home');
-        };
-
-        $scope.user = CurrentUser.user();
-        $scope.pseudo = CurrentUser.user().pseudo;
-        $scope.avatar = CurrentUser.user().avatar;
-        $scope.email = CurrentUser.user().email;
-        $scope.point = 'points';
-
-        $scope.communitys = [];
-
-        UserService.getOne(userId).then(function(res) {
-            $scope.communitys = res.data.community;
-            $scope.community = $scope.communitys[($scope.communitys.length - 1)];
-        });
-        $scope.infoUpdate = function(){
-
-          var infouser ={
-            pseudo: $scope.pseudo,
-            email: $scope.email
-          };
-
-          UserService.update(userId, infouser).then(function(res) {
-            console.log(res.data);
-
-                });
-
-          };
-
-    });
+  
 
 angular.module('app')
   .controller('RegisterController', function($scope, Auth, $state, UserService, $timeout) {
@@ -103598,7 +103601,7 @@ angular.module('app')
                 views: {
                     'content@': {
                         templateUrl: 'user/infoPerso.html',
-                        controller: 'MainController'
+                        controller: 'InfopersoController'
                     }
                 }
             })
@@ -103907,17 +103910,65 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "<div class=\"container back\">\n" +
     "\n" +
     "\n" +
-    "<div class=\"modalform\">\n" +
+    "    <div class=\"infoform\">\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-xs-6 col-xs-offset-3\">\n" +
+    "                <h1>Trip-Affinity</h1>\n" +
+    "                <h3>Complément d'information</h3>\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div class=\"col s12\">\n" +
+    "                        <div class=\"photo\">\n" +
+    "                            <div class=\"col-md-6\">\n" +
+    "                                <div class=\"photodim\">\n" +
+    "                                    <img src=\"/img/mila.jpg\" alt=\"\">\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <br><br><br>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <form class=\"col s12\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <div class=\"input-field col s6\">\n" +
+    "                                            <input id=\"first_name\" type=\"text\" class=\"validate\" ng-model=\"prenom\">\n" +
+    "                                            <label for=\"first_name\">Prénom</label>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"input-field col s6\">\n" +
+    "                                            <input id=\"last_name\" type=\"text\" class=\"validate\" ng-model=\"nom\">\n" +
+    "                                            <label for=\"last_name\">Nom</label>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <div class=\"input-field col s6\">\n" +
+    "                                            <input id=\"pseudo\" type=\"text\" class=\"validate\" ng-model=\"pseudo\">\n" +
+    "                                            <label for=\"pseudo\">Pseudo</label>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"input-field col 6\">\n" +
+    "                                            <md-select placeholder=\"Indiquer votre sexe\" ng-model=\"sexe\">\n" +
+    "                                                <md-option ng-repeat=\"sexe in genres\" value=\"{{sexe}}\">{{sexe}}</md-option>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <form class=\"col s12\">\n" +
     "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-xs-6 col-xs-offset-3\">\n" +
-    "      <h3>Trip-Affinity</h3>\n" +
-    "      <h1>L'affaire est dans le sac...à dos!</h1>\n" +
-    "      \n" +
-    "        </form>\n" +
+    "                                    </div>\n" +
+    "\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col s12\">\n" +
+    "                                    <div class=\"input-field inline\">\n" +
+    "                                        <textarea id=\"text\" class=\"materialize-textarea\" ng-model=\"complement\"></textarea>\n" +
+    "                                        <label for=\"text\">Complement</label>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <button type=\"button\" class=\"btn btn-default\" ng-click=\"valide()\">Valider</button>\n" +
+    "                            </form>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                </form>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
-    "  </div>\n" +
-    "</div>\n" +
     "</div>\n"
   );
 
