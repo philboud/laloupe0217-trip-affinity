@@ -268,7 +268,19 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            <img src=\"/img/profilimg.jpg\" alt=\"Contact Person\"> {{user}}{{country}}\n" +
     "        </div>\n" +
     "        <div class=\"chat\">\n" +
+    "<h3>TatianaFromRussia</h3>\n" +
     "\n" +
+    "  <div class=\"row\">\n" +
+    "    <form class=\"col s12\">\n" +
+    "      <div class=\"row\">\n" +
+    "        <div class=\"input-field col s12\">\n" +
+    "          <textarea id=\"textarea1\" class=\"materialize-textarea\"></textarea>\n" +
+    "          <label for=\"textarea1\">Textarea</label>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </form>\n" +
+    "  </div>\n" +
+    "        \n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +

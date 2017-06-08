@@ -33139,12 +33139,17 @@ button.swiper-pagination-bullet {
 
 /*/////////////// GLOBAL\\\\\\\\\\\\\\*/
 .navbar{
-  background-color:#cc0033; 
+  background-color:#cc0033;
 }
 h2{
   font-size: 22px;
   font-weight: bold;
   color: white;
+}
+h3{
+  font-size: 12px;
+  font-weight: bold;
+  color:
 }
 .bgsubtitle{
   background-color: #cc0033;
