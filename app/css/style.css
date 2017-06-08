@@ -125,3 +125,34 @@ margin-bottom: 20px;
   top: 10%; left: 90%;
   transform: translate(-50%, -50%);
 }
+
+/*/////////////// RENCONTRE \\\\\\\\\\\\\\*/
+
+/*.filter{
+  background-color: #81d4fa;
+  height: 100vh;
+}*/
+
+.checkbox{
+  margin-right: 20px;
+}
+/*.selectbox{
+  background-color: white;
+}*/
+.question{
+  margin-left: 25px;
+}
+.namecard{
+  font-size: 25px;
+  color: #cc0033;
+  margin: 0px 0px 20px 0px;
+}
+.pcard{
+margin: 0px;
+}
+.rep{
+  color: #cc0033
+}
+.chipcard{
+  margin-top: 20px;
+}

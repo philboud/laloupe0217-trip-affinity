@@ -3,32 +3,32 @@ angular.module('app')
 
           var profils = [{
             pseudo: 'Coralie',
-            image: '/img/coralie.jpg',
+            image: '/img/Coralie.jpg',
             country: 'Mali',
           },
           {
             pseudo: 'Anna',
-            image: '/img/anna.jpg',
+            image: '/img/Anna.jpg',
             country: 'canada',
           },
           {
             pseudo: 'Camille',
-            image: '/img/camille.jpg',
+            image: '/img/Camille.jpg',
             country: 'Antilles',
           },
           {
-            pseudo: 'Cécile',
-            image: '/img/cecile.jpg',
+            pseudo: 'Cecile',
+            image: '/img/Cecile.jpg',
             country: 'Brezil',
           },
           {
             pseudo: 'Annick',
-            image: '/img/lucie.jpg',
+            image: '/img/Annick.jpg',
             country: 'Amerique',
           },
           {
             pseudo: 'Manon',
-            image: '/img/nailletine.jpg',
+            image: '/img/Manon.jpg',
             country: 'Japon',
           }];
 
