@@ -77,7 +77,7 @@ angular.module('app')
                 views: {
                     'content@': {
                         templateUrl: 'user/infoPerso.html',
-                        controller: 'MainController'
+                        controller: 'InfopersoController'
                     }
                 }
             })
