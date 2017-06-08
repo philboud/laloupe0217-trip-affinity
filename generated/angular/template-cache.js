@@ -265,7 +265,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "        </div>\n" +
     "        <p class=\"subtitle\">here are the latest registered trippers</p>\n" +
     "        <div class=\"chip rightsuggest\" ng-repeat=\"user in users\" ng-click=\"profilUser(user)\">\n" +
-    "            <img src=\"/img/\" {{user}} \".jpg\" alt=\"Contact Person\"> {{user}}\n" +
+    "            <img src=\"/img/\"{{user}}\".jpg\" alt=\"Contact Person\"> {{user}}\n" +
     "        </div>\n" +
     "        <div class=\"row\" ng-hide=\"chat\">\n" +
     "            <div class=\"chat z-depth-2\">\n" +
@@ -411,23 +411,40 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            </div>\n" +
     "            <div class=\"chip chipcard\">Long spend\n" +
     "            </div>\n" +
-    "<span class=\"memorys\">Trip Memorys</span>\n" +
-    "<div class=\"collections\">\n" +
-    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
-    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
-    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
-    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
-    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
-    "  <img class=\"col s4 collectpic\"  src=\"/img/tatiana.jpg\" alt=\"\">\n" +
-    "\n" +
-    "</div>\n" +
+    "            <span class=\"memorys\">Trip Memorys</span>\n" +
+    "            <div class=\"collections\">\n" +
+    "                <div class=\"col s4 couple\">\n" +
+    "                    <img class=\"collectpic\" src=\"/img/carnet1.jpg\" alt=\"\">\n" +
+    "                    <p class=\"center-align\">Sketch</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"col s4 couple\">\n" +
+    "                    <img class=\"collectpic\" src=\"/img/brazil.jpg\" alt=\"\">\n" +
+    "                    <p class=\"center-align\">Brazil</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"col s4 couple\">\n" +
+    "                    <img class=\"collectpic\" src=\"/img/capetown.jpg\" alt=\"\">\n" +
+    "                    <p class=\"center-align\">Sounth Africa</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"col s4 couple\">\n" +
+    "                    <img class=\"collectpic\" src=\"/img/newyork.jpg\" alt=\"\">\n" +
+    "                    <p class=\"center-align\">USA</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"col s4 couple\">\n" +
+    "                    <img class=\"collectpic\" src=\"/img/newdelhi.jpg\" alt=\"\">\n" +
+    "                    <p class=\"center-align\">India</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"col s4 couple\">\n" +
+    "                    <img class=\"collectpic\" src=\"/img/lisboa.jpg\" alt=\"\">\n" +
+    "                    <p class=\"center-align\">Portugal</p>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "\n" +
     "\n" +
     "\n" +
     "\n" +
     "            <div class=\"btns\">\n" +
     "                <a class=\"btn-floating btn-large\" ng-click=\"prevCarnet()\"><i class=\"material-icons\">chevron_left</i></a>\n" +
-    "                  <a class=\"btn-floating btn-large\" ng-click=\"nextCarnet()\"><i class=\"material-icons\">chevron_right</i></a>\n" +
+    "                <a class=\"btn-floating btn-large\" ng-click=\"nextCarnet()\"><i class=\"material-icons\">chevron_right</i></a>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"col s8\">\n" +
@@ -435,12 +452,9 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                <!-- <div class=\"header\">\n" +
     "\n" +
     "                </div> -->\n" +
-    "<div class=\"slider\">\n" +
-    "    <img class=\"fondtest\" src=  {{currentImage}} alt=\"\">\n" +
-    "\n" +
-    "</div>\n" +
-    "\n" +
-    "\n" +
+    "                <div class=\"slider\">\n" +
+    "                    <img class=\"fondtest\" src={{currentImage}} alt=\"\">\n" +
+    "                </div>\n" +
     "\n" +
     "            </div>\n" +
     "        </div>\n" +

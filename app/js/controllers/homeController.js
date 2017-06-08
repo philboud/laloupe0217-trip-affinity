@@ -1,7 +1,7 @@
 angular.module('app')
 
 
-    .controller('homeController', function($scope, Auth, UserService, Profils) {
+    .controller('homeController', function($scope, Auth, UserService, Profils, $state) {
 
         $scope.profils = Profils;
         console.log($scope.profils);
@@ -14,6 +14,9 @@ angular.module('app')
             console.log('  $scope.countrys', $scope.countrys);
         });
   $scope.chat = true;
+  $scope.goToProfil = function () {
+    $state.go('user.perso');
+  };
 
 $scope.openChat = function(){
   $scope.chat = false;
@@ -31,7 +34,6 @@ $scope.profilUser = function(user){
 $scope.message="";
 
 $scope.send = function(){
-  console.log("hi");
   console.log($scope.message);
   $scope.message="";
 };
