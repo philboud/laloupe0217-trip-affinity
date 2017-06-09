@@ -15,7 +15,7 @@ angular.module('app')
         });
       }, 1500);
     }
-    
+
     $scope.addEmail = function() {
       $timeout.cancel(timer);
       searchEmail();
@@ -33,7 +33,7 @@ angular.module('app')
       Auth.register($scope.user).then(function(res){
         console.log(res);
       })
-      .then($state.go("user.home"));
+      .then($state.go("user.infoperso"));
 
     };
   });

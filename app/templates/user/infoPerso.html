@@ -1,62 +1,57 @@
-<div class="container back">
+<div class="back">
 
 
-    <div class="infoform">
+    <div class="col s6 offset-s6 boxforcomp z-depth-2">
         <div class="row">
-            <div class="col-xs-6 col-xs-offset-3">
+            <div class="col s6 offset-s3">
+                <div class="row">
+                    <img src="/img/newlogo.svg" alt="">
+                </div>
                 <h1>Trip-Affinity</h1>
-                <h3>Complément d'information</h3>
+                <h2 class="soustitre">Because Love is the greatest trip !</h2>
                 <div class="row">
                     <div class="col s12">
                         <div class="photo">
-                            <div class="col-md-6">
-                                <div class="photodim">
-                                    <img src="/img/mila.jpg" alt="">
+
+                                <!-- <img class="col s4 circle responsive-img" src="/img/manu.jpg" alt=""> -->
+
+                            <br><br><br>
+
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="first_name" type="text" class="validate" ng-model="prenom">
+                                    <label for="first_name">Name</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="last_name" type="text" class="validate" ng-model="nom">
+                                    <label for="last_name">First name</label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="pseudo" type="text" class="validate" ng-model="pseudo">
+                                    <label for="pseudo">Pseudo</label>
+                                </div>
+                                <div class="input-field col 6">
+                                    <md-select placeholder="Your sex" ng-model="sexe">
+                                        <md-option ng-repeat="sexe in genres" value="{{sexe}}">{{sexe}}</md-option>
                                 </div>
                             </div>
-                            <br><br><br>
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s6">
-                                            <input id="first_name" type="text" class="validate" ng-model="prenom">
-                                            <label for="first_name">Prénom</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <input id="last_name" type="text" class="validate" ng-model="nom">
-                                            <label for="last_name">Nom</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-field col s6">
-                                            <input id="pseudo" type="text" class="validate" ng-model="pseudo">
-                                            <label for="pseudo">Pseudo</label>
-                                        </div>
-                                        <div class="input-field col 6">
-                                            <md-select placeholder="Indiquer votre sexe" ng-model="sexe">
-                                                <md-option ng-repeat="sexe in genres" value="{{sexe}}">{{sexe}}</md-option>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <form class="col s12">
 
-                                    </div>
-
-                            </div>
                             <div class="row">
                                 <div class="col s12">
-                                    <div class="input-field inline">
-                                        <textarea id="text" class="materialize-textarea" ng-model="complement"></textarea>
-                                        <label for="text">Complement</label>
-                                    </div>
+                                  <div class="col s12 checkBox question">
+                                      <p class="col s4" ng-repeat="type in typeOfTravel">
+                                          <input type="checkbox" id="{{type}}" />
+                                          <label for="{{type}}">{{type}}</label>
+                                      </p>
+                                  </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-default" ng-click="valide()">Valider</button>
-                            </form>
+                            <button type="button" class="col s3 offset-s4 btn btn-default" ng-click="valide()">OK</button>
                         </div>
                     </div>
                 </div>
-                </form>
             </div>
         </div>
     </div>

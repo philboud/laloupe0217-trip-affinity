@@ -103491,7 +103491,7 @@ $scope.send = function(){
     });
 
 angular.module('app')
-    .controller('InfopersoController', function($scope, CurrentUser, UserService) {
+    .controller('InfopersoController', function($scope, CurrentUser, UserService, $state) {
 
         var userId = CurrentUser.user()._id;
         console.log(CurrentUser.user());
@@ -103518,8 +103518,25 @@ angular.module('app')
             console.log($scope.infoperso);
             console.log(userId);
             UserService.update(userId,infopersos).then(function(res) {});
-
+            $state.go('user.persomen');
         };
+
+
+        $scope.typeOfTravel = [
+          'Chill',
+          'Lux',
+          'Backpack',
+          'Sport',
+          'Cultural',
+          'Food',
+          'Photography',
+          'wildlife',
+          'Party',
+          'Mix',
+          'Short time',
+          'Long spend'
+
+        ];
         });
 
 angular.module('app')
@@ -103539,7 +103556,7 @@ angular.module('app')
             if ($scope.loginForm.$valid) {
                 $scope.errors = [];
                 Auth.login($scope.user).then(function(result) {
-                    $state.go('user.home');
+                    $state.go('user.infoperso');
                 }).catch(function(err) {
                     $scope.errors.push(err);
                 });
@@ -103594,7 +103611,7 @@ angular.module('app')
         });
       }, 1500);
     }
-    
+
     $scope.addEmail = function() {
       $timeout.cancel(timer);
       searchEmail();
@@ -103612,7 +103629,7 @@ angular.module('app')
       Auth.register($scope.user).then(function(res){
         console.log(res);
       })
-      .then($state.go("user.home"));
+      .then($state.go("user.infoperso"));
 
     };
   });
@@ -103661,6 +103678,36 @@ angular.module('app')
           $scope.list = false;
           console.log($scope.list);
         };
+$scope.list1 = true;
+$scope.list2 = true;
+$scope.list3 = true;
+$scope.list4 = true;
+
+$scope.risk = function () {
+    $scope.list = true;
+  $scope.list1 = true;
+  $scope.list2 = true;
+  $scope.list3 = true;
+  $scope.list4 = true;
+
+var arr=  Math.floor((Math.random() * 4) + 1);
+
+if (arr ===1) {
+  $scope.list1 = false;
+}
+if (arr ===2) {
+  $scope.list2 = false;
+}
+if (arr ===3) {
+  $scope.list3 = false;
+}
+if (arr ===4) {
+  $scope.list4 = false;
+}
+
+};
+
+
     });
 
 angular.module('app')
@@ -103883,31 +103930,39 @@ angular.module("app").run(["$templateCache", function($templateCache) {
   );
 
   $templateCache.put("anon/login.html",
-    "<div class=\"container back\">\n" +
+    "<div class=\" back\">\n" +
+    "    <div class=\"col s12\">\n" +
     "\n" +
+    "        <div class=\"col s6 offset-s6 boxforlog z-depth-2\">\n" +
     "\n" +
-    "<div class=\"modalform\">\n" +
-    "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-xs-6 col-xs-offset-3\">\n" +
-    "      <h3>Trip-Affinity</h3>\n" +
-    "      <h1>L'affaire est dans le sac...à dos!</h1>\n" +
-    "        <form class=\"form\" name=\"loginForm\" novalidate ng-submit=\"login()\">\n" +
-    "            <div ng-repeat=\"error in errors\">{{error.error}}</div>\n" +
-    "            <div class=\"input-group\">\n" +
-    "                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>\n" +
-    "                <input id=\"email\" type=\"email\" class=\"form-control\" ng-model=\"user.email\" required placeholder=\"Email Address\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col s12\">\n" +
+    "                    <div class=\"row\">\n" +
+    "                        <img src=\"/img/newlogo.svg\" alt=\"\">\n" +
+    "                    </div>\n" +
+    "                    <h1>Trip-Affinity</h1>\n" +
+    "                    <h2 class=\"soustitre\">Because Love is the greatest trip !</h2>\n" +
+    "                    <form class=\"form\" name=\"loginForm\" novalidate ng-submit=\"login()\">\n" +
+    "                        <div ng-repeat=\"error in errors\">{{error.error}}\n" +
+    "                        </div>\n" +
+    "                        <div class=\"input-group\">\n" +
+    "                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>\n" +
+    "                            <input id=\"email\" type=\"email\" class=\"form-control\" ng-model=\"user.email\" required placeholder=\"Email Address\">\n" +
+    "                        </div>\n" +
+    "                        <div class=\"input-group\">\n" +
+    "                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\"></i></span>\n" +
+    "                            <input id=\"password\" type=\"password\" class=\"form-control\" ng-model=\"user.password\" required placeholder=\"Password\">\n" +
+    "                        </div>\n" +
+    "                        <button class=\"col s6 offset-s3 btn btn-primary btn-block\" type=\"submit\">Login</button><br>\n" +
+    "                        <div class=\"col s12 baseline\" >\n" +
+    "                          <a href=\"#!/register\">If you're not registered click here !</a>\n" +
+    "                        </div>\n" +
+    "                    </form>\n" +
+    "                </div>\n" +
     "            </div>\n" +
-    "            <div class=\"input-group\">\n" +
-    "                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\"></i></span>\n" +
-    "                <input id=\"password\" type=\"password\" class=\"form-control\" ng-model=\"user.password\" required placeholder=\"Password\">\n" +
-    "            </div>\n" +
-    "            <button type=\"submit\" class=\"btn btn-primary btn-block\">Login</button><br>\n" +
-    "          <a href=\"#!/register\">Vous n'êtes pas encore enregistré, cliquez sur ce lien</a>\n" +
-    "        </form>\n" +
+    "        </div>\n" +
     "    </div>\n" +
-    "  </div>\n" +
-    "</div>\n" +
+    "\n" +
     "</div>\n"
   );
 
@@ -103915,13 +103970,13 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "<nav class=\"navbar navbar-default\" role=\"navigation\" ng-controller=\"NavbarController\">\n" +
     "    <div class=\"container-fluid\">\n" +
     "        <div class=\"navbar-header\">\n" +
-    "          \n" +
-    "            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navbar\">\n" +
+    "\n" +
+    "            <!-- <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navbar\">\n" +
     "        <span class=\"sr-only\">Toggle navigation</span>\n" +
     "        <span class=\"icon-bar\"></span>\n" +
     "        <span class=\"icon-bar\"></span>\n" +
     "        <span class=\"icon-bar\"></span>\n" +
-    "      </button>\n" +
+    "      </button> -->\n" +
     "            <a class=\"navbar-brand\" href=\"#\"></a>\n" +
     "        </div>\n" +
     "        <div class=\"collapse navbar-collapse\" id=\"navbar\">\n" +
@@ -103941,7 +103996,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
   );
 
   $templateCache.put("anon/register.html",
-    "<div class=\"container back\">\n" +
+    "<!-- <div class=\"container back\">\n" +
     "  <div class=\"modalform\">\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-xs-6 col-xs-offset-3\">\n" +
@@ -103962,6 +104017,40 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "    </div>\n" +
     "</div>\n" +
     "</div>\n" +
+    "</div> -->\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "<div class=\" back\">\n" +
+    "    <div class=\"col s12\">\n" +
+    "\n" +
+    "        <div class=\"col s6 offset-s6 boxforlog z-depth-2\">\n" +
+    "\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col s12\">\n" +
+    "                    <div class=\"row\">\n" +
+    "                        <img src=\"/img/newlogo.svg\" alt=\"\">\n" +
+    "                    </div>\n" +
+    "                    <h1>Trip-Affinity</h1>\n" +
+    "                    <h2 class=\"soustitre\">Because Love is the greatest trip !</h2>\n" +
+    "                    <form class=\"form\" name=\"loginForm\" novalidate ng-submit=\"register()\">\n" +
+    "                        <div ng-repeat=\"error in errors\">{{error.error}}</div>\n" +
+    "                        <div class=\"input-group\">\n" +
+    "                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>\n" +
+    "                            <input id=\"email\" type=\"email\" class=\"form-control\" ng-model=\"user.email\" required placeholder=\"Email Address\">\n" +
+    "                        </div>\n" +
+    "                                <div class=\"input-group\">\n" +
+    "                            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\"></i></span>\n" +
+    "                            <input id=\"password\" type=\"password\" class=\"form-control\" ng-model=\"user.password\" required placeholder=\"Password\">\n" +
+    "                        </div>\n" +
+    "                        <button class=\"col s6 offset-s3 btn btn-primary btn-block\" type=\"submit\">Register</button><br>\n" +
+    "\n" +
+    "                    </form>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
     "</div>\n"
   );
 
@@ -104058,8 +104147,26 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            <h2>Have you ever met :</h2>\n" +
     "        </div>\n" +
     "        <p class=\"subtitle\">here are the latest registered trippers</p>\n" +
-    "        <div class=\"chip rightsuggest\" ng-repeat=\"user in users\" ng-click=\"profilUser(user)\">\n" +
+    "        <!-- <div class=\"chip rightsuggest\" ng-repeat=\"user in users\" ng-click=\"profilUser(user)\">\n" +
     "            <img src=\"/img/\" {{user}} \".jpg\" alt=\"Contact Person\"> {{user}}\n" +
+    "        </div> -->\n" +
+    "        <div class=\"chip rightsuggest\">\n" +
+    "            <img src=\"/img/Anna.jpg\" alt=\"Contact Person\"> Anna\n" +
+    "        </div>\n" +
+    "        <div class=\"chip rightsuggest\">\n" +
+    "            <img src=\"/img/Camille.jpg\" alt=\"Contact Person\"> Camille\n" +
+    "        </div>\n" +
+    "        <div class=\"chip rightsuggest\">\n" +
+    "            <img src=\"/img/Coralie.jpg\" alt=\"Contact Person\"> Coralie\n" +
+    "        </div>\n" +
+    "        <div class=\"chip rightsuggest\">\n" +
+    "            <img src=\"/img/Annick.jpg\" alt=\"Contact Person\"> Annick\n" +
+    "        </div>\n" +
+    "        <div class=\"chip rightsuggest\">\n" +
+    "            <img src=\"/img/Cecile.jpg\" alt=\"Contact Person\"> Cecile\n" +
+    "        </div>\n" +
+    "        <div class=\"chip rightsuggest\">\n" +
+    "            <img src=\"/img/Manon.jpg\" alt=\"Contact Person\"> Manon\n" +
     "        </div>\n" +
     "        <div class=\"row\" ng-hide=\"chat\">\n" +
     "            <div class=\"chat z-depth-2 scale-transition\">\n" +
@@ -104085,65 +104192,60 @@ angular.module("app").run(["$templateCache", function($templateCache) {
   );
 
   $templateCache.put("user/infoPerso.html",
-    "<div class=\"container back\">\n" +
+    "<div class=\"back\">\n" +
     "\n" +
     "\n" +
-    "    <div class=\"infoform\">\n" +
+    "    <div class=\"col s6 offset-s6 boxforcomp z-depth-2\">\n" +
     "        <div class=\"row\">\n" +
-    "            <div class=\"col-xs-6 col-xs-offset-3\">\n" +
+    "            <div class=\"col s6 offset-s3\">\n" +
+    "                <div class=\"row\">\n" +
+    "                    <img src=\"/img/newlogo.svg\" alt=\"\">\n" +
+    "                </div>\n" +
     "                <h1>Trip-Affinity</h1>\n" +
-    "                <h3>Complément d'information</h3>\n" +
+    "                <h2 class=\"soustitre\">Because Love is the greatest trip !</h2>\n" +
     "                <div class=\"row\">\n" +
     "                    <div class=\"col s12\">\n" +
     "                        <div class=\"photo\">\n" +
-    "                            <div class=\"col-md-6\">\n" +
-    "                                <div class=\"photodim\">\n" +
-    "                                    <img src=\"/img/mila.jpg\" alt=\"\">\n" +
+    "\n" +
+    "                                <!-- <img class=\"col s4 circle responsive-img\" src=\"/img/manu.jpg\" alt=\"\"> -->\n" +
+    "\n" +
+    "                            <br><br><br>\n" +
+    "\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"input-field col s6\">\n" +
+    "                                    <input id=\"first_name\" type=\"text\" class=\"validate\" ng-model=\"prenom\">\n" +
+    "                                    <label for=\"first_name\">Name</label>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"input-field col s6\">\n" +
+    "                                    <input id=\"last_name\" type=\"text\" class=\"validate\" ng-model=\"nom\">\n" +
+    "                                    <label for=\"last_name\">First name</label>\n" +
+    "                                </div>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"row\">\n" +
+    "                                <div class=\"input-field col s6\">\n" +
+    "                                    <input id=\"pseudo\" type=\"text\" class=\"validate\" ng-model=\"pseudo\">\n" +
+    "                                    <label for=\"pseudo\">Pseudo</label>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"input-field col 6\">\n" +
+    "                                    <md-select placeholder=\"Your sex\" ng-model=\"sexe\">\n" +
+    "                                        <md-option ng-repeat=\"sexe in genres\" value=\"{{sexe}}\">{{sexe}}</md-option>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <br><br><br>\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <form class=\"col s12\">\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"input-field col s6\">\n" +
-    "                                            <input id=\"first_name\" type=\"text\" class=\"validate\" ng-model=\"prenom\">\n" +
-    "                                            <label for=\"first_name\">Prénom</label>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"input-field col s6\">\n" +
-    "                                            <input id=\"last_name\" type=\"text\" class=\"validate\" ng-model=\"nom\">\n" +
-    "                                            <label for=\"last_name\">Nom</label>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"input-field col s6\">\n" +
-    "                                            <input id=\"pseudo\" type=\"text\" class=\"validate\" ng-model=\"pseudo\">\n" +
-    "                                            <label for=\"pseudo\">Pseudo</label>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"input-field col 6\">\n" +
-    "                                            <md-select placeholder=\"Indiquer votre sexe\" ng-model=\"sexe\">\n" +
-    "                                                <md-option ng-repeat=\"sexe in genres\" value=\"{{sexe}}\">{{sexe}}</md-option>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <form class=\"col s12\">\n" +
     "\n" +
-    "                                    </div>\n" +
-    "\n" +
-    "                            </div>\n" +
     "                            <div class=\"row\">\n" +
     "                                <div class=\"col s12\">\n" +
-    "                                    <div class=\"input-field inline\">\n" +
-    "                                        <textarea id=\"text\" class=\"materialize-textarea\" ng-model=\"complement\"></textarea>\n" +
-    "                                        <label for=\"text\">Complement</label>\n" +
-    "                                    </div>\n" +
+    "                                  <div class=\"col s12 checkBox question\">\n" +
+    "                                      <p class=\"col s4\" ng-repeat=\"type in typeOfTravel\">\n" +
+    "                                          <input type=\"checkbox\" id=\"{{type}}\" />\n" +
+    "                                          <label for=\"{{type}}\">{{type}}</label>\n" +
+    "                                      </p>\n" +
+    "                                  </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <button type=\"button\" class=\"btn btn-default\" ng-click=\"valide()\">Valider</button>\n" +
-    "                            </form>\n" +
+    "                            <button type=\"button\" class=\"col s3 offset-s4 btn btn-default\" ng-click=\"valide()\">OK</button>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                </form>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -104158,9 +104260,9 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "\n" +
     "      <ul class=\"right hide-on-med-and-down\">\n" +
     "        <li ui-sref-active=\"active\"><a ui-sref=\"user.home\">Home</a></li>\n" +
-    "          <li ui-sref-active=\"active\"><a ui-sref=\"user.rencontre\">Rencontre</a></li>\n" +
-    "        <li><a href=\"#!/user/infoperso\">Info perso</a></li>\n" +
-    "            <li ui-sref-active=\"active\"><a ui-sref=\"user.persomen\">Mon profil</a></li>\n" +
+    "          <li ui-sref-active=\"active\"><a ui-sref=\"user.rencontre\">Match Someone</a></li>\n" +
+    "        <li><a href=\"#!/user/infoperso\">Personnal infos</a></li>\n" +
+    "            <li ui-sref-active=\"active\"><a ui-sref=\"user.persomen\">My profil</a></li>\n" +
     "\n" +
     "      </ul>\n" +
     "\n" +
@@ -104443,6 +104545,82 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"col s6 userCard card-panel hoverable\" ng-hide=\"list\">\n" +
+    "            <img class=\"col s4 circle responsive-img\" src=\"/img/Camille2.jpg\" alt=\"\">\n" +
+    "            <p class=\"col s8 namecard valign-wrapper\">Camille</p>\n" +
+    "            <p class=\"subtitle\">I love surprises tell me where you wanna go and I'll follow you.</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">Panama, USA, Canada, France, Spain</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">India, japan, Indonesia</p>\n" +
+    "\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Chill\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
+    "\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- ///////////////////RANDOM//////////////////////////////// -->\n" +
+    "\n" +
+    "        <div class=\"col s6 userCard card-panel hoverable\" ng-hide=\"list1\">\n" +
+    "            <img class=\"col s4 circle responsive-img\" src=\"/img/tatiana2.jpg\" alt=\"\">\n" +
+    "            <p class=\"col s8 namecard valign-wrapper\">TatianaFromRussia</p>\n" +
+    "            <p class=\"subtitle\">I like playing darts and basket-ball and love big surprises...</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">USA, Japan</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">France, Canada, Mexico</p>\n" +
+    "\n" +
+    "            <div class=\"chip chipcard\">Chill\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Long spend\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 userCard card-panel hoverable\" ng-hide=\"list2\">\n" +
+    "            <img class=\"col s4 circle responsive-img\" src=\"/img/Coralie2.jpg\" alt=\"\">\n" +
+    "            <p class=\"col s8 namecard valign-wrapper\">Coralie</p>\n" +
+    "            <p class=\"subtitle\">I would like to go in Asia. I need a real break I want to find love.</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">China, Costa rica, Germany</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">Bali, India, Maldives</p>\n" +
+    "\n" +
+    "            <div class=\"chip chipcard\">Chill\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Party\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 userCard card-panel hoverable\" ng-hide=\"list3\">\n" +
+    "            <img class=\"col s4 circle responsive-img\" src=\"/img/Cecile2.jpg\" alt=\"\">\n" +
+    "            <p class=\"col s8 namecard valign-wrapper\">Cécile</p>\n" +
+    "            <p class=\"subtitle\">Just looking for a nice guy who wants to start a new adventure.</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">Tunisia, Egypt, Mali, Kenya</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">Bali, India, Maldives</p>\n" +
+    "\n" +
+    "            <div class=\"chip chipcard\">Photography\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Short time\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Party\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 userCard card-panel hoverable\" ng-hide=\"list4\">\n" +
     "            <img class=\"col s4 circle responsive-img\" src=\"/img/Camille2.jpg\" alt=\"\">\n" +
     "            <p class=\"col s8 namecard valign-wrapper\">Camille</p>\n" +
     "            <p class=\"subtitle\">I love surprises tell me where you wanna go and I'll follow you.</p>\n" +

@@ -42,4 +42,34 @@ angular.module('app')
           $scope.list = false;
           console.log($scope.list);
         };
+$scope.list1 = true;
+$scope.list2 = true;
+$scope.list3 = true;
+$scope.list4 = true;
+
+$scope.risk = function () {
+    $scope.list = true;
+  $scope.list1 = true;
+  $scope.list2 = true;
+  $scope.list3 = true;
+  $scope.list4 = true;
+
+var arr=  Math.floor((Math.random() * 4) + 1);
+
+if (arr ===1) {
+  $scope.list1 = false;
+}
+if (arr ===2) {
+  $scope.list2 = false;
+}
+if (arr ===3) {
+  $scope.list3 = false;
+}
+if (arr ===4) {
+  $scope.list4 = false;
+}
+
+};
+
+
     });

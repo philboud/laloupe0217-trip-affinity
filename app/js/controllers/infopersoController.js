@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('InfopersoController', function($scope, CurrentUser, UserService) {
+    .controller('InfopersoController', function($scope, CurrentUser, UserService, $state) {
 
         var userId = CurrentUser.user()._id;
         console.log(CurrentUser.user());
@@ -26,6 +26,23 @@ angular.module('app')
             console.log($scope.infoperso);
             console.log(userId);
             UserService.update(userId,infopersos).then(function(res) {});
-
+            $state.go('user.persomen');
         };
+
+
+        $scope.typeOfTravel = [
+          'Chill',
+          'Lux',
+          'Backpack',
+          'Sport',
+          'Cultural',
+          'Food',
+          'Photography',
+          'wildlife',
+          'Party',
+          'Mix',
+          'Short time',
+          'Long spend'
+
+        ];
         });
