@@ -1,4 +1,9 @@
 /*/////////////// GLOBAL\\\\\\\\\\\\\\*/
+*{
+
+      font-family: 'Josefin Sans', sans-serif;
+}
+
 .navbar{
   background-color:#cc0033;
 }
@@ -6,6 +11,15 @@ h2{
   font-size: 22px;
   font-weight: bold;
   color: white;
+}
+h1{
+  text-align: center;
+  
+  color: #cc0033;
+  font-size: 90px,
+}
+.soustitre{
+  color : #cc0033;
 }
 h3{
   font-size: 12px;
@@ -32,6 +46,13 @@ img {
 }
 .cardtitle{
   padding-left: 5px;
+}
+
+.logo{
+  margin-bottom: 120px;
+  position: absolute;
+  top: 1em;
+
 }
 
 .view{
@@ -62,6 +83,12 @@ height: 100vh;
 }
 
 /*/////////////// HOME PAGE \\\\\\\\\\\\\\*/
+.texttitle{
+  text-align: center;
+  z-index: 0;
+  position: absolute;
+  top: 300px;
+}
 .lastnews{
   margin-left: 20px;
 }
@@ -70,10 +97,19 @@ padding-top: -200px;
 background-image: url("/img/header.svg");
 background-size: cover;
 background-position: center;
+z-index: -1;
+opacity: 0.5;
+
 
 width: 100%;
 height: 500px;
 margin-bottom: 20px;
+
+-webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
   }
 
   .rightsuggest{
@@ -82,6 +118,8 @@ margin-bottom: 20px;
 
 .chiplastnews{
   position: relative;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 .blocknews{
   margin-bottom: 20px;

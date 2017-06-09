@@ -16,7 +16,7 @@
             <p>Speaking :</p>
             <div class="checkBox col s12">
                 <p class="col s6" ng-repeat="langue in langues">
-                    <input type="checkbox" id="{{langue}}" ng-model="langue.isChecked" />
+                    <input type="checkbox" id="{{langue}}"/>
                     <label for="{{langue}}">{{langue}}</label>
                 </p>
             </div>
@@ -38,7 +38,7 @@
 
         <div class="col s12 checkBox question">
             <p class="col s2" ng-repeat="type in typeOfTravel">
-                <input type="checkbox" id="{{type}}" ng-model="type.isChecked" />
+                <input type="checkbox" id="{{type}}" />
                 <label for="{{type}}">{{type}}</label>
             </p>
         </div>
@@ -68,8 +68,63 @@
             </div>
             <div class="chip chipcard">Long spend
             </div>
+        </div>
+        <div class="col s6 userCard card-panel hoverable" ng-hide="list">
+            <img class="col s4 circle responsive-img" src="/img/Coralie2.jpg" alt="">
+            <p class="col s8 namecard valign-wrapper">Coralie</p>
+            <p class="subtitle">I would like to go in Asia. I need a real break I want to find love.</p>
+            <p class="col s3 pcard">Visited :</p>
+            <p class="col s9 pcard rep">China, Costa rica, Germany</p>
+            <p class="col s3 pcard">Wish :</p>
+            <p class="col s9 pcard rep">Bali, India, Maldives</p>
+
+            <div class="chip chipcard">Chill
+            </div>
+            <div class="chip chipcard">Backpack
+            </div>
+            <div class="chip chipcard">Sport
+            </div>
+            <div class="chip chipcard">Party
+            </div>
+        </div>
+        <div class="col s6 userCard card-panel hoverable" ng-hide="list">
+            <img class="col s4 circle responsive-img" src="/img/Cecile2.jpg" alt="">
+            <p class="col s8 namecard valign-wrapper">Cécile</p>
+            <p class="subtitle">Just looking for a nice guy who wants to start a new adventure.</p>
+            <p class="col s3 pcard">Visited :</p>
+            <p class="col s9 pcard rep">Tunisia, Egypt, Mali, Kenya</p>
+            <p class="col s3 pcard">Wish :</p>
+            <p class="col s9 pcard rep">Bali, India, Maldives</p>
+
+            <div class="chip chipcard">Photography
+            </div>
+            <div class="chip chipcard">Backpack
+            </div>
+            <div class="chip chipcard">Sport
+            </div>
+            <div class="chip chipcard">Short time
+            </div>
+            <div class="chip chipcard">Party
+            </div>
+        </div>
+        <div class="col s6 userCard card-panel hoverable" ng-hide="list">
+            <img class="col s4 circle responsive-img" src="/img/Camille2.jpg" alt="">
+            <p class="col s8 namecard valign-wrapper">Camille</p>
+            <p class="subtitle">I love surprises tell me where you wanna go and I'll follow you.</p>
+            <p class="col s3 pcard">Visited :</p>
+            <p class="col s9 pcard rep">Panama, USA, Canada, France, Spain</p>
+            <p class="col s3 pcard">Wish :</p>
+            <p class="col s9 pcard rep">India, japan, Indonesia</p>
+
+            <div class="chip chipcard">Sport
+            </div>
+            <div class="chip chipcard">Chill
+            </div>
+            <div class="chip chipcard">Backpack
+            </div>
 
         </div>
+
 
 
     </div>

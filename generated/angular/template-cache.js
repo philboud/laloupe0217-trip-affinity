@@ -184,6 +184,13 @@ angular.module("app").run(["$templateCache", function($templateCache) {
 
   $templateCache.put("user/home.html",
     "<div class=\"row\">\n" +
+    "\n" +
+    "    <div class=\"texttitle\">\n" +
+    "        <img class=\"logo\" src=\"/img/newlogo.svg\" alt=\"\">\n" +
+    "        <h1>Trip-Affinity</h1>\n" +
+    "        <h2 class=\"soustitre\">Because Love is the greatest trip !</h2>\n" +
+    "    </div>\n" +
+    "\n" +
     "    <div class=\"col s12 map\">\n" +
     "    </div>\n" +
     "    <div class=\"col s6 lastnews\">\n" +
@@ -255,7 +262,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "\n" +
     "            <div class=\"col s3 offset-s9\">\n" +
     "                <i class=\"material-icons\" ng-click=\"goToProfil()\">person</i>\n" +
-    "                <i class=\"material-icons\"ng-click=\"openChat()\">message</i>\n" +
+    "                <i class=\"material-icons\" ng-click=\"openChat()\">message</i>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -265,10 +272,10 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "        </div>\n" +
     "        <p class=\"subtitle\">here are the latest registered trippers</p>\n" +
     "        <div class=\"chip rightsuggest\" ng-repeat=\"user in users\" ng-click=\"profilUser(user)\">\n" +
-    "            <img src=\"/img/\"{{user}}\".jpg\" alt=\"Contact Person\"> {{user}}\n" +
+    "            <img src=\"/img/\" {{user}} \".jpg\" alt=\"Contact Person\"> {{user}}\n" +
     "        </div>\n" +
     "        <div class=\"row\" ng-hide=\"chat\">\n" +
-    "            <div class=\"chat z-depth-2\">\n" +
+    "            <div class=\"chat z-depth-2 scale-transition\">\n" +
     "                <h3>TatianaFromRussia</h3>\n" +
     "\n" +
     "                <div class=\"row\">\n" +
@@ -276,7 +283,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                        <div class=\"row\">\n" +
     "                            <div class=\"input-field col s12\">\n" +
     "                                <textarea id=\"textarea1\" class=\"materialize-textarea\" ng-model=\"message\"></textarea>\n" +
-    "                                <label for=\"textarea1\" >Textarea</label>\n" +
+    "                                <label for=\"textarea1\">Textarea</label>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </form>\n" +
@@ -357,11 +364,11 @@ angular.module("app").run(["$templateCache", function($templateCache) {
   );
 
   $templateCache.put("user/navbar.html",
+    "\n" +
     "<nav class=\"navbar navbar-default\" role=\"navigation\" ng-controller=\"NavbarController\">\n" +
     "    <div class=\"container-fluid\">\n" +
     "        <div class=\"navbar-header\">\n" +
-    "          <img src=\"/img/newlogo.svg\" alt=\"\">\n" +
-    "          \n" +
+    "\n" +
     "      <ul class=\"right hide-on-med-and-down\">\n" +
     "        <li ui-sref-active=\"active\"><a ui-sref=\"user.home\">Home</a></li>\n" +
     "          <li ui-sref-active=\"active\"><a ui-sref=\"user.rencontre\">Rencontre</a></li>\n" +
@@ -411,27 +418,27 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "\n" +
     "            <h4 class=\"memorys center-align\">Trip Memorys</h4>\n" +
     "            <div class=\"collections\">\n" +
-    "                <div class=\"col s4 couple\">\n" +
+    "                <div class=\"col s4 couple hoverable\">\n" +
     "                    <img class=\"collectpic\" src=\"/img/carnet1.jpg\" alt=\"\">\n" +
     "                    <p class=\"center-align\">Sketch</p>\n" +
     "                </div>\n" +
-    "                <div class=\"col s4 couple\">\n" +
+    "                <div class=\"col s4 couple hoverable\">\n" +
     "                    <img class=\"collectpic\" src=\"/img/brazil.jpg\" alt=\"\">\n" +
     "                    <p class=\"center-align\">Brazil</p>\n" +
     "                </div>\n" +
-    "                <div class=\"col s4 couple\">\n" +
+    "                <div class=\"col s4 couple hoverable\">\n" +
     "                    <img class=\"collectpic\" src=\"/img/capetown.jpg\" alt=\"\">\n" +
     "                    <p class=\"center-align\">Sounth Africa</p>\n" +
     "                </div>\n" +
-    "                <div class=\"col s4 couple\">\n" +
+    "                <div class=\"col s4 couple hoverable\">\n" +
     "                    <img class=\"collectpic\" src=\"/img/newyork.jpg\" alt=\"\">\n" +
     "                    <p class=\"center-align\">USA</p>\n" +
     "                </div>\n" +
-    "                <div class=\"col s4 couple\">\n" +
+    "                <div class=\"col s4 couple hoverable\">\n" +
     "                    <img class=\"collectpic\" src=\"/img/newdelhi.jpg\" alt=\"\">\n" +
     "                    <p class=\"center-align\">India</p>\n" +
     "                </div>\n" +
-    "                <div class=\"col s4 couple\">\n" +
+    "                <div class=\"col s4 couple hoverable\">\n" +
     "                    <img class=\"collectpic\" src=\"/img/lisboa.jpg\" alt=\"\">\n" +
     "                    <p class=\"center-align\">Portugal</p>\n" +
     "                </div>\n" +
@@ -496,15 +503,15 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "\n" +
     "            <h4 class=\"memorys center-align\">Trip Memorys</h4>\n" +
     "            <div class=\"collections\">\n" +
-    "                <div class=\"col s4 couple\">\n" +
+    "                <div class=\"col s4 couple hoverable\">\n" +
     "                    <img class=\"collectpic\" src=\"/img/manu1.jpeg\" alt=\"\">\n" +
     "                    <p class=\"center-align\">Mortagne-au-Perche</p>\n" +
     "                </div>\n" +
-    "                <div class=\"col s4 couple\">\n" +
+    "                <div class=\"col s4 couple hoverable\">\n" +
     "                    <img class=\"collectpic\" src=\"/img/manu2.jpg\" alt=\"\">\n" +
     "                    <p class=\"center-align\">Bellou-sur-Huisne</p>\n" +
     "                </div>\n" +
-    "                <div class=\"col s4 couple\">\n" +
+    "                <div class=\"col s4 couple hoverable\">\n" +
     "                    <img class=\"collectpic\" src=\"/img/manu3.jpg\" alt=\"\">\n" +
     "                    <p class=\"center-align\">St Aubin-des-Gois</p>\n" +
     "                </div>\n" +
@@ -557,7 +564,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            <p>Speaking :</p>\n" +
     "            <div class=\"checkBox col s12\">\n" +
     "                <p class=\"col s6\" ng-repeat=\"langue in langues\">\n" +
-    "                    <input type=\"checkbox\" id=\"{{langue}}\" ng-model=\"langue.isChecked\" />\n" +
+    "                    <input type=\"checkbox\" id=\"{{langue}}\"/>\n" +
     "                    <label for=\"{{langue}}\">{{langue}}</label>\n" +
     "                </p>\n" +
     "            </div>\n" +
@@ -579,7 +586,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "\n" +
     "        <div class=\"col s12 checkBox question\">\n" +
     "            <p class=\"col s2\" ng-repeat=\"type in typeOfTravel\">\n" +
-    "                <input type=\"checkbox\" id=\"{{type}}\" ng-model=\"type.isChecked\" />\n" +
+    "                <input type=\"checkbox\" id=\"{{type}}\" />\n" +
     "                <label for=\"{{type}}\">{{type}}</label>\n" +
     "            </p>\n" +
     "        </div>\n" +
@@ -609,8 +616,63 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            </div>\n" +
     "            <div class=\"chip chipcard\">Long spend\n" +
     "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 userCard card-panel hoverable\" ng-hide=\"list\">\n" +
+    "            <img class=\"col s4 circle responsive-img\" src=\"/img/Coralie2.jpg\" alt=\"\">\n" +
+    "            <p class=\"col s8 namecard valign-wrapper\">Coralie</p>\n" +
+    "            <p class=\"subtitle\">I would like to go in Asia. I need a real break I want to find love.</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">China, Costa rica, Germany</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">Bali, India, Maldives</p>\n" +
+    "\n" +
+    "            <div class=\"chip chipcard\">Chill\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Party\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 userCard card-panel hoverable\" ng-hide=\"list\">\n" +
+    "            <img class=\"col s4 circle responsive-img\" src=\"/img/Cecile2.jpg\" alt=\"\">\n" +
+    "            <p class=\"col s8 namecard valign-wrapper\">Cécile</p>\n" +
+    "            <p class=\"subtitle\">Just looking for a nice guy who wants to start a new adventure.</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">Tunisia, Egypt, Mali, Kenya</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">Bali, India, Maldives</p>\n" +
+    "\n" +
+    "            <div class=\"chip chipcard\">Photography\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Short time\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Party\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col s6 userCard card-panel hoverable\" ng-hide=\"list\">\n" +
+    "            <img class=\"col s4 circle responsive-img\" src=\"/img/Camille2.jpg\" alt=\"\">\n" +
+    "            <p class=\"col s8 namecard valign-wrapper\">Camille</p>\n" +
+    "            <p class=\"subtitle\">I love surprises tell me where you wanna go and I'll follow you.</p>\n" +
+    "            <p class=\"col s3 pcard\">Visited :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">Panama, USA, Canada, France, Spain</p>\n" +
+    "            <p class=\"col s3 pcard\">Wish :</p>\n" +
+    "            <p class=\"col s9 pcard rep\">India, japan, Indonesia</p>\n" +
+    "\n" +
+    "            <div class=\"chip chipcard\">Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Chill\n" +
+    "            </div>\n" +
+    "            <div class=\"chip chipcard\">Backpack\n" +
+    "            </div>\n" +
     "\n" +
     "        </div>\n" +
+    "\n" +
     "\n" +
     "\n" +
     "    </div>\n" +
